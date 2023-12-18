@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Determination Mono";
+    src: url("https://images.wikia.nocookie.net/undertale/images/c/c0/Determination.eot");
+    src: url("https://images.wikia.nocookie.net/undertale/images/c/c0/Determination.eot?#iefix") format("embedded-opentype"),
+         url("https://images.wikia.nocookie.net/undertale/images/a/aa/Determination.woff2") format("woff2"),
+         url("https://images.wikia.nocookie.net/undertale/images/3/37/Determination.woff") format("woff"),
+         url("https://images.wikia.nocookie.net/undertale/images/c/cd/Determination.ttf") format("truetype"),
+         url("https://images.wikia.nocookie.net/undertale/images/7/7f/Determination.svg#Undertale") format("svg");
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: "Determination Mono";
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

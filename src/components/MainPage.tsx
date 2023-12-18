@@ -1,0 +1,17 @@
+import React from 'react';
+import Button from './Button';
+
+const MainPage: React.FC = () => {
+    return <main className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-4xl mb-8">Undertale Yellow Save Editor</h1>
+        <p className="mb-4">Which save file would you like to edit?</p>
+        <div className="grid grid-cols-2 gap-4">
+            <Button label="Save.sav" page="save" />
+            <Button label="Save02.sav" page="save02" />
+            <Button label="Controls.sav" page="controls" />
+            <Button label="Tempsave.sav" page="tempsave" />
+        </div>
+    </main>;
+};
+
+export default MainPage;
