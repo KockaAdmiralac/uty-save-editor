@@ -6,7 +6,7 @@ interface Props {
 };
 
 const Section: React.FC<Props> = ({ children, name }) => {
-    return <section>
+    return <section className="mb-16">
         <h2 className="text-2xl mb-8">{name}</h2>
         {children}
     </section>;

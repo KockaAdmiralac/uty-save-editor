@@ -1,14 +1,60 @@
-import React, { useContext } from 'react';
+import React, { ChangeEvent, useCallback, useContext, useState } from 'react';
+import Load from '../actions/Load';
+import Download from '../actions/Download';
 import BackButton from '../components/BackButton';
 import Button from '../components/Button';
 import Section from '../controls/Section';
 import NumberField from '../controls/NumberField';
+import SelectField from '../controls/SelectField';
+import BooleanField from '../controls/BooleanField';
+import TextField from '../controls/TextField';
 import { SaveContext } from '../util/Context';
-import Load from '../actions/Load';
-import Download from '../actions/Download';
+import accessoryMapping from '../mappings/accessories.json';
+import ammoMapping from '../mappings/ammo.json';
+import armorMapping from '../mappings/armor.json';
+import directionMapping from '../mappings/direction.json';
+import followerMapping from '../mappings/follower.json';
+import funValueMapping from '../mappings/fun.json';
+import itemsMapping from '../mappings/items.json';
+import roomsMapping from '../mappings/rooms.json';
+import spriteMapping from '../mappings/sprite.json';
+import weaponMapping from '../mappings/weapons.json';
+
+const reduceEquipmentMapping = (mapping: Record<string, {label: string}>) =>
+    Object.fromEntries(
+        Object
+            .entries(mapping)
+            .map(([key, {label}]) => [key, label])
+    );
 
 const SaveEditor: React.FC = () => {
     const {data} = useContext(SaveContext);
+    const ppHelp = 'PP (protection points): how many hits does the SOUL remain invulnerable (effect applied by Golden Pear and Ceroba).';
+    const spHelp = 'SP (speed points): how many turns does the SOUL become faster (effect applied by Golden Coffee).';
+    const rpHelp = 'RP (restoration points): how many turns does the SOUL keep regaining HP (effect applied by Golden Cactus).';
+    const roomsMappingOnlySaves = Object.fromEntries(
+        Object
+            .entries(roomsMapping)
+            .filter(([_, name]) => name.endsWith(' [SAVE]'))
+            .map(([key, value]) => [key, value.replace(/ \[SAVE\]$/, '')])
+    );
+    const reducedAccessoryMapping = reduceEquipmentMapping(accessoryMapping);
+    const reducedAmmoMapping = reduceEquipmentMapping(ammoMapping);
+    const reducedArmorMapping = reduceEquipmentMapping(armorMapping);
+    const reducedWeaponMapping = reduceEquipmentMapping(weaponMapping);
+    const [roomsMappingState, setRoomsMappingState] = useState<Record<string, string>>(roomsMappingOnlySaves);
+    const allItemsMapping = {
+        ...itemsMapping,
+        ...reducedArmorMapping,
+        ...reducedAccessoryMapping,
+        ...reducedWeaponMapping,
+        ...reducedAmmoMapping
+    };
+    const changeRoomsMapping = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        setRoomsMappingState(event.currentTarget.checked ?
+            roomsMappingOnlySaves :
+            roomsMapping);
+    }, [roomsMappingOnlySaves, setRoomsMappingState]);
     return <main className="flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-4xl mb-8">Save Editor</h1>
         {data.save.loaded ? <>
@@ -18,16 +64,174 @@ const SaveEditor: React.FC = () => {
                 <Button label="Save template" page="template-save" />
                 <Button label="Load template" page="template-load" />
             </div>
-            <Section name="Stats">
-                <NumberField save="save" section="Save1" option="Gold" label="Gold" />
+            <Section name="Battle stats">
+                <NumberField save="save" section="Save1" option="AT - Primary" label="AT (Weapon)" />
+                <NumberField save="save" section="Save1" option="AT - Secondary" label="AT (Ammo)" />
+                <NumberField save="save" section="Save1" option="DFP" label="DF (Armor)" />
+                <NumberField save="save" section="Save1" option="DFS" label="DF (Accessory)" />
+                <NumberField save="save" section="Save1" option="HP" label="Current HP" />
+                <NumberField save="save" section="Save1" option="MAXHP" label="Max HP" />
+                <NumberField save="save" section="Save1" option="PP" label="Current PP" help={ppHelp} />
+                <NumberField save="save" section="Save1" option="MAXPP" label="Max PP" help={ppHelp} />
+                <NumberField save="save" section="Save1" option="SP" label="Current SP" help={spHelp} />
+                <NumberField save="save" section="Save1" option="MAXSP" label="Max SP" help={spHelp} />
+                <NumberField save="save" section="Save1" option="RP" label="Current RP" help={rpHelp} />
+                <NumberField save="save" section="Save1" option="MAXRP" label="Max RP" help={rpHelp} />
                 <NumberField save="save" section="Save1" option="EXP" label="EXP" />
                 <NumberField save="save" section="Save1" option="LV" label="LV" />
-                <NumberField save="save" section="Save1" option="DFP" label="DF (Primary)" />
-                <NumberField save="save" section="Save1" option="DFS" label="DF (Secondary)" />
-                <NumberField save="save" section="Save1" option="AT - Primary" label="AT (Primary)" />
-                <NumberField save="save" section="Save1" option="AT - Secondary" label="AT (Secondary)" />
-                <NumberField save="save" section="Save1" option="MAXHP" label="Max HP" />
-                <NumberField save="save" section="Save1" option="HP" label="Current HP" />
+                <NumberField save="save" section="Save1" option="Gold" label="Gold" />
+            </Section>
+            <Section name="Equipment">
+                <SelectField
+                    save="save"
+                    section="Save1"
+                    option="Armor"
+                    label="Armor"
+                    mapping={reducedArmorMapping}
+                />
+                <SelectField
+                    save="save"
+                    section="Save1"
+                    option="Accessory"
+                    label="Accessory"
+                    mapping={reducedAccessoryMapping}
+                />
+                <SelectField
+                    save="save"
+                    section="Save1"
+                    option="Weapon"
+                    label="Weapon"
+                    mapping={reducedWeaponMapping}
+                />
+                <SelectField
+                    save="save"
+                    section="Save1"
+                    option="Ammo"
+                    label="Ammo"
+                    mapping={reducedAmmoMapping}
+                />
+            </Section>
+            <Section name="Overworld state">
+                <SelectField
+                    save="save"
+                    section="Save1"
+                    option="room"
+                    label="Current room"
+                    mapping={roomsMappingState}
+                />
+                <TextField
+                    save="save"
+                    section="Save1"
+                    option="rmName"
+                    label="Room name on the title screen"
+                />
+                <p className="grid grid-cols-2 gap-4 mb-2">
+                    <label htmlFor="only-saves">Show only SAVE locations</label>
+                    <input
+                        type="checkbox"
+                        name="only-saves"
+                        id="only-saves"
+                        defaultChecked={true}
+                        onChange={changeRoomsMapping}
+                    ></input>
+                </p>
+                <NumberField save="save" section="Save1" option="pX" label="X coordinate" />
+                <NumberField save="save" section="Save1" option="pY" label="Y coordinate" />
+                <SelectField
+                    save="save"
+                    section="Save1"
+                    option="dir"
+                    label="Facing direction"
+                    mapping={directionMapping}
+                />
+                <SelectField
+                    save="save"
+                    section="Save1"
+                    option="playerSprite"
+                    label="Player sprite"
+                    mapping={spriteMapping}
+                />
+                <BooleanField save="save" section="Save1" option="playerCanRun" label="Running allowed" />
+                <SelectField
+                    save="save"
+                    section="Save1"
+                    option="Follower"
+                    label="Follower"
+                    mapping={followerMapping}
+                />
+            </Section>
+            <Section name="Items">{
+                Array(8)
+                    .fill(0)
+                    .map((_, idx) =>
+                        <SelectField
+                            save="save"
+                            section="Items"
+                            option={String(idx).padStart(2, '0')}
+                            label={`Slot ${idx + 1}`}
+                            mapping={allItemsMapping}
+                            key={idx}
+                        />)
+            }</Section>
+            <Section name="Routes">
+                {/* TODO */}
+            </Section>
+            <Section name="Dimensional Box">
+                {/* TODO */}
+            </Section>
+            <Section name="Fun value">
+                <SelectField
+                    save="save"
+                    section="Save1"
+                    option="FUN"
+                    label="Fun value"
+                    isNumber={true}
+                    mapping={funValueMapping}
+                />
+                <BooleanField save="save" section="Fun Events" option="0" label="Chair Man appeared in Saloon" />
+                <BooleanField save="save" section="Fun Events" option="1" label="Chair Man appeared in Honeydew Resort" />
+            </Section>
+            <Section name="Fast Travel">
+                {/* TODO */}
+            </Section>
+            <Section name="Mail">
+                {/* TODO */}
+            </Section>
+            <Section name="Shops">
+                {/* TODO */}
+            </Section>
+            <Section name="Ruins">
+                {/* TODO */}
+            </Section>
+            <Section name="Steamworks">
+                {/* TODO */}
+            </Section>
+            <Section name="Play statistics">
+                <NumberField save="save" section="Playtime" option="Seconds" label="Playtime (seconds)" />
+                <NumberField
+                    save="save"
+                    section="Deaths"
+                    option="00"
+                    label="Total death count against certain bosses"
+                    help="The bosses are Decibat, Dalv, Micro Froggit, Martlet (Pacifist or Genocide) and Flowey. This value is only saved by Flowey, so it may not be present on Pacifist or Genocide runs."
+                />
+                <NumberField
+                    save="save"
+                    section="Deaths"
+                    option="01"
+                    label="Death count against Decibat"
+                    help="This value is only saved by Flowey, so it may not be present on Pacifist or Genocide runs."
+                />
+                <NumberField
+                    save="save"
+                    section="Deaths"
+                    option="02"
+                    label="Death count against Dalv"
+                    help="This value is only saved by Flowey, so it may not be present on Pacifist or Genocide runs."
+                />
+            </Section>
+            <Section name="Flowey">
+                {/* TODO */}
             </Section>
         </> : <Load fileName="Save.sav" save="save" />}
     </main>;

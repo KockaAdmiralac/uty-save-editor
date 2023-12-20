@@ -59,7 +59,6 @@ export function contextReducer(state: SaveContextData, action: SaveContextAction
                 sectionData.order.push(option);
             }
             sectionData.data[option] = action.value;
-            console.log(sectionData.data[option]);
             return newState;
         case 'add':
             if (!sectionData.order.includes(option) || !Array.isArray(sectionData.data[option])) {

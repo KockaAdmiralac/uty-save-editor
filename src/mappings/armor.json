@@ -1,0 +1,12 @@
+{
+    "Worn Hat": {
+        "label": "Worn Hat (3DF only in easy mode)",
+        "defense": 0,
+        "defense-easy": 3
+    },
+    "Nice Hat": {
+        "label": "Nice Hat (5DF only in easy mode)",
+        "defense": 0,
+        "defense-easy": 5
+    }
+}

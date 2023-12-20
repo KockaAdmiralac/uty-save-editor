@@ -1,0 +1,50 @@
+{
+    "Patch": {
+        "label": "Patch",
+        "defense": 0
+    },
+    "Feather": {
+        "label": "Feather",
+        "defense": 2
+    },
+    "Honeydew Pin": {
+        "label": "Honeydew Pin",
+        "defense": 4
+    },
+    "Band Merch Pin": {
+        "label": "Band Merch Pin",
+        "defense": 5
+    },
+    "Safety Jacket": {
+        "label": "Safety Jacket",
+        "defense": 6
+    },
+    "Steel Buckle": {
+        "label": "Steel Buckle",
+        "defense": 7
+    },
+    "Fancy Holster": {
+        "label": "Fancy Holster",
+        "defense": 8
+    },
+    "Safety Goggles": {
+        "label": "Safety Goggles",
+        "defense": 9
+    },
+    "Silver Scarf": {
+        "label": "Silver Scarf",
+        "defense": 6
+    },
+    "G. Bandana": {
+        "label": "Golden Bandana",
+        "defense": 12
+    },
+    "Delta Rune Patch": {
+        "label": "Delta Rune Patch",
+        "defense": 10
+    },
+    "Golden Scarf": {
+        "label": "Golden Scarf (Unused)",
+        "defense": 25
+    }
+}

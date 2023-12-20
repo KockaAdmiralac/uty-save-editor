@@ -1,0 +1,42 @@
+{
+    "Rubber Ammo": {
+        "label": "Rubber Ammo",
+        "attack": 0
+    },
+    "Pebble Ammo": {
+        "label": "Pebble Ammo",
+        "attack": 3
+    },
+    "Ice Pellets": {
+        "label": "Ice Pellets",
+        "attack": 6
+    },
+    "Cff Bean Ammo": {
+        "label": "Coffee Bean Ammo",
+        "attack": 4
+    },
+    "Glass Ammo": {
+        "label": "Glass Ammo",
+        "attack": 5
+    },
+    "Flint": {
+        "label": "Flint",
+        "attack": 9
+    },
+    "Silver Ammo": {
+        "label": "Silver Ammo",
+        "attack": 3
+    },
+    "Nails": {
+        "label": "Nails",
+        "attack": 10
+    },
+    "Friendliness Pellets": {
+        "label": "Friendliness Pellets",
+        "attack": 11
+    },
+    "Super Ammo": {
+        "label": "Super Ammo",
+        "attack": 0
+    }
+}

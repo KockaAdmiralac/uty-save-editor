@@ -1,0 +1,14 @@
+{
+    "Toy Gun": {
+        "label": "Toy Gun",
+        "attack": 0
+    },
+    "Wild Revolver": {
+        "label": "Wild Revolver",
+        "attack": 0
+    },
+    "Toy Knife": {
+        "label": "Toy Knife (Unused)",
+        "attack": 3
+    }
+}
