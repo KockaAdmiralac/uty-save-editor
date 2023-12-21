@@ -1,5 +1,6 @@
 import {useCallback, useContext, ChangeEvent} from 'react';
-import {SaveContext, SaveFileName} from '../util/Context';
+import {SaveContext} from '../util/Context';
+import {SaveFileName} from '../util/save';
 
 interface Props {
     save: SaveFileName;

@@ -9,7 +9,8 @@ import ControlsEditor from '../editors/ControlsEditor';
 import Save02Editor from '../editors/Save02Editor';
 import SaveEditor from '../editors/SaveEditor';
 import TempSaveEditor from '../editors/TempSaveEditor';
-import { contextReducer, emptySaves, SaveContext } from '../util/Context';
+import { contextReducer, SaveContext } from '../util/Context';
+import { emptySaves } from '../util/save';
 
 const App: React.FC = () => {
     const [data, dispatch] = useReducer(contextReducer, emptySaves);

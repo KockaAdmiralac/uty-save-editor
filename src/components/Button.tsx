@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 
 type ButtonProps = {
@@ -6,7 +6,7 @@ type ButtonProps = {
     page: string;
 } | {
     label: string;
-    onClick: () => void
+    onClick: (e: MouseEvent<HTMLButtonElement>) => void
 };
 
 const Button: React.FC<ButtonProps> = (props) => {

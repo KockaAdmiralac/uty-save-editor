@@ -1,19 +1,6 @@
 import {createContext} from 'react';
 import {IniFile, IniValue} from './ini';
-
-interface SaveFile {
-    data: IniFile;
-    loaded: boolean;
-}
-
-interface SaveContextData {
-    save: SaveFile;
-    save02: SaveFile;
-    controls: SaveFile;
-    tempsave: SaveFile;
-};
-
-export type SaveFileName = keyof SaveContextData;
+import { SaveFileName, SaveFiles, emptySaves } from './save';
 
 type SaveContextAction = {
     type: 'change',
@@ -33,9 +20,9 @@ type SaveContextAction = {
     value: IniFile;
 };
 
-export function contextReducer(state: SaveContextData, action: SaveContextAction): SaveContextData {
+export function contextReducer(state: SaveFiles, action: SaveContextAction): SaveFiles {
     // For a lack of a better deep-copy method.
-    const newState: SaveContextData = JSON.parse(JSON.stringify(state));
+    const newState: SaveFiles = JSON.parse(JSON.stringify(state));
     if (action.type === 'load') {
         newState[action.save].loaded = true;
         newState[action.save].data = action.value;
@@ -72,23 +59,8 @@ export function contextReducer(state: SaveContextData, action: SaveContextAction
     }
 }
 
-const emptySave: SaveFile = {
-    data: {
-        data: {},
-        order: []
-    },
-    loaded: false
-};
-
-export const emptySaves: SaveContextData = {
-    save: emptySave,
-    save02: emptySave,
-    controls: emptySave,
-    tempsave: emptySave
-};
-
 interface SaveContextWithDispatch {
-    data: SaveContextData;
+    data: SaveFiles;
     dispatch: (action: SaveContextAction) => void;
 };
 

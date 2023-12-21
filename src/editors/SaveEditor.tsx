@@ -1,14 +1,15 @@
-import React, { ChangeEvent, useCallback, useContext, useState } from 'react';
-import Load from '../actions/Load';
-import Download from '../actions/Download';
+import React, {ChangeEvent, useCallback, useContext, useState} from 'react';
+import DownloadButton from '../actions/DownloadButton';
+import LoadButton from '../actions/LoadButton';
+import LoadTemplateButton from '../actions/LoadTemplateButton';
+import SaveTemplateButton from '../actions/SaveTemplateButton';
 import BackButton from '../components/BackButton';
-import Button from '../components/Button';
 import Section from '../controls/Section';
 import NumberField from '../controls/NumberField';
 import SelectField from '../controls/SelectField';
 import BooleanField from '../controls/BooleanField';
 import TextField from '../controls/TextField';
-import { SaveContext } from '../util/Context';
+import {SaveContext} from '../util/Context';
 import accessoryMapping from '../mappings/accessories.json';
 import ammoMapping from '../mappings/ammo.json';
 import armorMapping from '../mappings/armor.json';
@@ -19,6 +20,7 @@ import itemsMapping from '../mappings/items.json';
 import roomsMapping from '../mappings/rooms.json';
 import spriteMapping from '../mappings/sprite.json';
 import weaponMapping from '../mappings/weapons.json';
+import LoadScreen from './LoadScreen';
 
 const reduceEquipmentMapping = (mapping: Record<string, {label: string}>) =>
     Object.fromEntries(
@@ -55,14 +57,25 @@ const SaveEditor: React.FC = () => {
             roomsMappingOnlySaves :
             roomsMapping);
     }, [roomsMappingOnlySaves, setRoomsMappingState]);
-    return <main className="flex flex-col items-center justify-center min-h-screen">
+    return <main className="flex flex-col items-center justify-center min-h-screen md:ml-20 md:mr-20 lg:ml-80 lg:mr-80 max-sm:ml-4 max-sm:mr-4">
         <h1 className="text-4xl mb-8">Save Editor</h1>
         {data.save.loaded ? <>
-            <div className="flex gap-4 mb-8">
+            <p className="mb-4">
+                Here you can edit various aspects of your save file. Once you
+                are done editing, you can download the save file using 
+                the <em className="text-yellow-400">Download</em> button, or
+                save it as a template for future use using
+                the <em className="text-yellow-400">Save template</em> button.
+                If you want to load a different save file, you can use
+                the <em className="text-yellow-400">Load&nbsp;</em>
+                or <em className="text-yellow-400">Load template</em> buttons.
+            </p>
+            <div className="flex max-sm:flex-col gap-4 mb-8 justify-center w-full">
+                <DownloadButton fileName="Save.sav" save="save" />
+                <SaveTemplateButton save="save" />
+                <LoadButton fileName="Save.sav" save="save" />
+                <LoadTemplateButton save="save" />
                 <BackButton />
-                <Download fileName="Save.sav" save="save" />
-                <Button label="Save template" page="template-save" />
-                <Button label="Load template" page="template-load" />
             </div>
             <Section name="Battle stats">
                 <NumberField save="save" section="Save1" option="AT - Primary" label="AT (Weapon)" />
@@ -233,7 +246,7 @@ const SaveEditor: React.FC = () => {
             <Section name="Flowey">
                 {/* TODO */}
             </Section>
-        </> : <Load fileName="Save.sav" save="save" />}
+        </> : <LoadScreen fileName="Save.sav" save="save" showTemplate={true} />}
     </main>;
 };
 

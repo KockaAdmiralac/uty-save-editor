@@ -1,8 +1,9 @@
 import React, { useCallback, useContext, useRef, useState } from 'react';
 import Button from '../components/Button';
-import { SaveContext, SaveFileName } from '../util/Context';
+import { SaveContext } from '../util/Context';
 import { stringifyIni } from '../util/ini';
 import Modal from '../components/Modal';
+import { SaveFileName } from '../util/save';
 
 interface Props {
     fileName: string;
@@ -37,8 +38,8 @@ const Download: React.FC<Props> = ({fileName, save}) => {
             <>
                 {/* TODO: Make this message better. */}
                 <p>
-                    After downloading, place this file in
-                    <code>%LOCALAPPDATA%/Undertale_Yellow</code> on Windows
+                    After downloading, place this file
+                    in <code>%LOCALAPPDATA%/Undertale_Yellow</code> on Windows
                     or <code>~/.config/Undertale_Yellow</code> on Linux.
                 </p>
                 <div className="flex justify-center mt-4">
