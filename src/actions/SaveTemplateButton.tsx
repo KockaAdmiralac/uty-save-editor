@@ -3,10 +3,19 @@ import Button from "../components/Button";
 import {SaveFileName} from "../util/save";
 import Modal from "../components/Modal";
 import { SaveContext } from "../util/Context";
+import { IniFile } from "../util/ini";
 
 interface Props {
     save: SaveFileName;
     text?: string;
+}
+
+function removeSworksId(file: IniFile): IniFile {
+    const fileCopy: IniFile = JSON.parse(JSON.stringify(file));
+    delete fileCopy.data['SworksFlags'].data['sworks_id'];
+    fileCopy.data['SworksFlags'].order = fileCopy.data['SworksFlags'].order
+        .filter(p => p !== 'sworks_id');
+    return fileCopy;
 }
 
 const SaveTemplateButton: React.FC<Props> = ({ save, text }) => {
@@ -25,7 +34,7 @@ const SaveTemplateButton: React.FC<Props> = ({ save, text }) => {
         try {
             const allUserTemplates = JSON.parse(localStorage.getItem('user-templates') || '{}');
             allUserTemplates[save] = allUserTemplates[save] || {};
-            allUserTemplates[save][templateName] = data[save].data;
+            allUserTemplates[save][templateName] = removeSworksId(data[save].data);
             localStorage.setItem('user-templates', JSON.stringify(allUserTemplates));
             setModalIsOpen(false);
         } catch (error: any) {
