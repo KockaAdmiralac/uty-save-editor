@@ -21,6 +21,7 @@ import roomsMapping from '../mappings/rooms.json';
 import spriteMapping from '../mappings/sprite.json';
 import weaponMapping from '../mappings/weapons.json';
 import LoadScreen from './LoadScreen';
+import Footer from '../components/Footer';
 
 const reduceEquipmentMapping = (mapping: Record<string, {label: string}>) =>
     Object.fromEntries(
@@ -247,6 +248,7 @@ const SaveEditor: React.FC = () => {
                 {/* TODO */}
             </Section>
         </> : <LoadScreen fileName="Save.sav" save="save" showTemplate={true} />}
+        <Footer />
     </main>;
 };
 
