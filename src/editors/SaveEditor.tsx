@@ -22,6 +22,7 @@ import spriteMapping from '../mappings/sprite.json';
 import weaponMapping from '../mappings/weapons.json';
 import LoadScreen from './LoadScreen';
 import Footer from '../components/Footer';
+import RoomViewer from '../controls/RoomViewer';
 
 const reduceEquipmentMapping = (mapping: Record<string, {label: string}>) =>
     Object.fromEntries(
@@ -132,6 +133,13 @@ const SaveEditor: React.FC = () => {
                     option="room"
                     label="Current room"
                     mapping={roomsMappingState}
+                />
+                <RoomViewer
+                    save="save"
+                    section="Save1"
+                    roomOption="room"
+                    xOption="pX"
+                    yOption="pY"
                 />
                 <TextField
                     save="save"
