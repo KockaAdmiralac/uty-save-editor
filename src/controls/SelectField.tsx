@@ -7,7 +7,7 @@ interface Props {
     section: string;
     option: string;
     label: string;
-    mapping: Record<string, string>;
+    mapping: Record<string, string | Record<string, string>>;
     isNumber?: boolean;
 };
 
@@ -36,9 +36,14 @@ const SelectField: React.FC<Props> = ({save, section, option, label, mapping, is
             value={String(value)}
         >{Object
             .entries(mapping)
-            .map(([value, label]) => <option value={value} key={value}>
-                {label}
-            </option>)}</select>
+            .map(([value, label]) => typeof label === 'object' ?
+                <optgroup label={value} key={value}>{Object
+                    .entries(label)
+                    .map(([value2, label2]) =>
+                        <option value={value2} key={value2}>{label2}</option>)
+                }</optgroup> :
+                <option value={value} key={value}>{label}</option>)
+        }</select>
     </p>;
 };
 

@@ -48,10 +48,10 @@ const SaveEditor: React.FC = () => {
     const [roomsMappingState, setRoomsMappingState] = useState<Record<string, string>>(roomsMappingOnlySaves);
     const allItemsMapping = {
         ...itemsMapping,
-        ...reducedArmorMapping,
-        ...reducedAccessoryMapping,
-        ...reducedWeaponMapping,
-        ...reducedAmmoMapping
+        Armor: reducedArmorMapping,
+        Accessories: reducedAccessoryMapping,
+        Weapons: reducedWeaponMapping,
+        Ammo: reducedAmmoMapping
     };
     const changeRoomsMapping = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setRoomsMappingState(event.currentTarget.checked ?
