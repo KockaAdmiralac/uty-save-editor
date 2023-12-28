@@ -27,6 +27,7 @@ const Download: React.FC<Props> = ({fileName, save}) => {
         downloadRef.current.download = fileName;
         downloadRef.current.click();
         URL.revokeObjectURL(blobUrl);
+        setModalIsOpen(false);
     }, [data, fileName, save]);
     return <>
         <Button label="Download" onClick={onModalOpen} />

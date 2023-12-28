@@ -55,7 +55,8 @@ const LoadButton: React.FC<Props> = ({ fileName, save, text }) => {
                 type: 'load',
                 save,
                 value
-            })
+            });
+            setModalIsOpen(false);
         } catch (error: any) {
             setError(error.message);
         }
