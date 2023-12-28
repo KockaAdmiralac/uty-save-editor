@@ -29,7 +29,7 @@ export type IniValue = IniSimpleValue | IniList | IniGrid | IniMap;
 export type IniFile = OrderPreservingMap<string, OrderPreservingMap<string, IniValue>>;
 
 const INI_SECTION = /^\[(.*)\]$/;
-const INI_PAIR = /^([^=]+)="(.*)"$/;
+const INI_PAIR = /^([^=]+)\s*=\s*"(.*)"$/;
 
 function orderedEntries<K extends KeyType, V>(
     map: OrderPreservingMap<K, V>
@@ -162,8 +162,10 @@ export function parseIni(contents: string): IniFile {
             if (!currentSection) {
                 throw new Error(`INI parse error: Key pair without a section on line ${lineNumber}: key=${key}, value=${value}.`);
             }
-            iniFile.data[currentSection].data[key] = parseIniValue(value);
-            iniFile.data[currentSection].order.push(key);
+            const trimmedKey = key.trim();
+            const trimmedValue = value.trim();
+            iniFile.data[currentSection].data[trimmedKey] = parseIniValue(trimmedValue);
+            iniFile.data[currentSection].order.push(trimmedKey);
         } else if (line) {
             throw new Error(`INI parse error: Invalid content on line ${lineNumber}.`);
         }
