@@ -54,10 +54,11 @@ const SaveTemplateButton: React.FC<Props> = ({ save, text }) => {
             title="Save as a template"
         >
             <>
-                {/* TODO: Make this message better. */}
                 <p>
-                    You can select one of the template save files from below to
-                    start editing from.
+                    You can save your current save data as a template for
+                    further modification later. Just enter a name for your
+                    template, click Save and you will be later be able to pick
+                    your template using the Load template button.
                 </p>
                 <p className="text-red-500">{error}</p>
                 <form className="flex flex-col w-1/2 m-auto justify-center mt-4">
