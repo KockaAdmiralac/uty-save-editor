@@ -103,7 +103,7 @@ const LoadTemplateButton: React.FC<Props> = ({ save, text }) => {
                 <form className="flex flex-col w-1/2 m-auto justify-center mt-4">
                     <ul className="mb-4">
                         {builtins.map((tmpl, idx) =>
-                            <li>
+                            <li key={`builtin-${idx}`}>
                                 <input
                                     type="radio"
                                     name="load-template-select"
@@ -111,13 +111,12 @@ const LoadTemplateButton: React.FC<Props> = ({ save, text }) => {
                                     value={tmpl}
                                     className="mr-2"
                                     onChange={onChangeTemplate}
-                                    key={`builtin-${idx}`}
                                 ></input>
                                 <label htmlFor={`load-template-select-builtin-${idx}`}>{tmpl}</label>
                             </li>)
                         }
                         {Object.keys(userTemplates).map((tmpl, idx) =>
-                            <li>
+                            <li key={`user-${idx}`}>
                                 <input
                                     type="radio"
                                     name="load-template-select"
@@ -125,7 +124,6 @@ const LoadTemplateButton: React.FC<Props> = ({ save, text }) => {
                                     value={tmpl}
                                     className="mr-2"
                                     onChange={onChangeTemplate}
-                                    key={`user-${idx}`}
                                 ></input>
                                 <label htmlFor={`load-template-select-user-${idx}`}>{tmpl}</label>
                             </li>)}
