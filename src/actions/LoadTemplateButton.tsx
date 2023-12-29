@@ -4,14 +4,14 @@ import {SaveContext} from "../util/Context";
 import {SaveFileName} from "../util/save";
 import Modal from "../components/Modal";
 import builtinTemplates from '../mappings/templates.json';
-import { IniFile, parseIni } from "../util/ini";
+import { GMValue, GMValueType, IniFile, parseIni } from "../util/ini";
 
 interface Props {
     save: SaveFileName;
     text?: string;
 }
 
-function addSworksId(file: IniFile) {
+function addSworksId(file: IniFile): IniFile {
     return {
         ...file,
         data: {
@@ -22,8 +22,8 @@ function addSworksId(file: IniFile) {
                         .fill([])
                         .map(() => Array(208)
                             .fill({})
-                            .map(() => ({
-                                type: 0,
+                            .map((): GMValue => ({
+                                type: GMValueType.REAL,
                                 value: 0
                             }))),
                     ...file.data.SworksFlags.data
@@ -66,9 +66,9 @@ const LoadTemplateButton: React.FC<Props> = ({ save, text }) => {
             setError('Select a template first!');
         }
         try {
-            const value = selectedIsBuiltin ?
+            const value = addSworksId(selectedIsBuiltin ?
                 (await fetchBuiltinTemplate(save, selectedTemplate)) :
-                userTemplates[selectedTemplate];
+                userTemplates[selectedTemplate]);
             dispatch({
                 type: 'load',
                 save,
@@ -82,9 +82,7 @@ const LoadTemplateButton: React.FC<Props> = ({ save, text }) => {
     const builtins = builtinTemplates[save];
     useEffect(() => {
         const allUserTemplates = JSON.parse(localStorage.getItem('user-templates') || '{}');
-        const saveUserTemplates = Object.entries(allUserTemplates[save] || {})
-            .map(([name, file]) => [name, addSworksId(file as IniFile)]);
-        setUserTemplates(Object.fromEntries(saveUserTemplates));
+        setUserTemplates(allUserTemplates[save] || {});
     }, [save, modalIsOpen]);
     return <>
         <Button label={text || 'Load template'} onClick={onModalOpen} />
