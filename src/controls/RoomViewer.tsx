@@ -1,4 +1,4 @@
-import {KeyboardEvent, MouseEvent, useCallback, useContext, useRef, useState} from 'react';
+import {KeyboardEvent, MouseEvent, SyntheticEvent, TouchEvent, useCallback, useContext, useRef, useState} from 'react';
 import {SaveContext} from '../util/Context';
 import {SaveFileName} from '../util/save';
 
@@ -13,18 +13,22 @@ interface Props {
 const RoomViewer: React.FC<Props> = ({save, section, roomOption, xOption, yOption}) => {
     const {data, dispatch} = useContext(SaveContext);
     const [moving, setMoving] = useState(false);
+    const [prevTouchX, setPrevTouchX] = useState(0);
+    const [prevTouchY, setPrevTouchY] = useState(0);
     const imgRef = useRef<HTMLImageElement>(null);
     const room = data[save].data.data[section]?.data[roomOption];
     const x = data[save].data.data[section]?.data[xOption];
     const y = data[save].data.data[section]?.data[yOption];
-    const startMoving = useCallback((e: MouseEvent<HTMLImageElement>) => {
+    const startMoving = useCallback((e: SyntheticEvent) => {
         e.preventDefault();
         imgRef.current?.focus();
         setMoving(true);
     }, [setMoving]);
-    const stopMoving = useCallback((e: MouseEvent<HTMLImageElement>) => {
+    const stopMoving = useCallback((e: SyntheticEvent) => {
         e.preventDefault();
         setMoving(false);
+        setPrevTouchX(0);
+        setPrevTouchY(0);
     }, [setMoving]);
     const changeXY = useCallback((dx: number, dy: number) => {
         if (dx) {
@@ -51,6 +55,19 @@ const RoomViewer: React.FC<Props> = ({save, section, roomOption, xOption, yOptio
             changeXY(-e.movementX, -e.movementY);
         }
     }, [moving, changeXY]);
+    const touchMoveCallback = useCallback((e: TouchEvent<HTMLImageElement>) => {
+        if (e.touches.length !== 1) {
+            return;
+        }
+        const {pageX: touchX, pageY: touchY} = e.touches[0];
+        if (prevTouchX && prevTouchY) {
+            const dx = Math.round(touchX - prevTouchX);
+            const dy = Math.round(touchY - prevTouchY);
+            changeXY(-dx, -dy);
+        }
+        setPrevTouchX(touchX);
+        setPrevTouchY(touchY);
+    }, [changeXY, prevTouchX, prevTouchY]);
     const keyCallback = useCallback((e: KeyboardEvent<HTMLImageElement>) => {
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
             return;
@@ -77,7 +94,7 @@ const RoomViewer: React.FC<Props> = ({save, section, roomOption, xOption, yOptio
             <img
                 src={`../rooms/${room}.png`}
                 alt={`Map of the room ${room}.`}
-                className="max-w-fit absolute"
+                className="max-w-fit absolute touch-none"
                 style={{
                     'left': -x + 320,
                     'top': -y + 240
@@ -87,6 +104,8 @@ const RoomViewer: React.FC<Props> = ({save, section, roomOption, xOption, yOptio
                 onMouseMove={moveCallback}
                 onMouseUp={stopMoving}
                 onMouseOut={stopMoving}
+                onTouchEnd={stopMoving}
+                onTouchMove={touchMoveCallback}
                 onKeyDown={keyCallback}
                 ref={imgRef}
             />

@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { MouseEvent, SyntheticEvent, TouchEvent, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { SaveFileName } from "../util/save";
 import { IniGrid } from "../util/ini";
 import { SaveContext } from "../util/Context";
@@ -53,32 +53,38 @@ const SteamworksIdEditor: React.FC<Props> = ({save, section, option}) => {
         const idSplit = e.currentTarget.id.split('-');
         setColor(Number(idSplit[idSplit.length - 1]));
     }, [setColor]);
-    const startDrawing = useCallback((e: MouseEvent<HTMLCanvasElement>) => {
+    const startDrawing = useCallback((e: SyntheticEvent) => {
         e.preventDefault();
         setDrawing(true);
     }, [setDrawing]);
-    const stopDrawing = useCallback((e: MouseEvent<HTMLCanvasElement>) => {
+    const stopDrawing = useCallback((e: SyntheticEvent) => {
         e.preventDefault();
         setDrawing(false);
     }, [setDrawing]);
-    const moveCallback = useCallback((e: MouseEvent<HTMLCanvasElement>) => {
+    const moveCallback = useCallback((e: MouseEvent<HTMLCanvasElement> | TouchEvent<HTMLCanvasElement>) => {
         if (!drawing) {
             return;
         }
         const rect = e.currentTarget.getBoundingClientRect();
-        const x = Math.round(e.clientX - rect.left);
-        const y = Math.round(e.clientY - rect.top);
-            dispatch({
-                type: 'draw',
-                save,
-                section,
-                option,
-                x,
-                y,
-                width: BRUSH_WIDTH,
-                height: BRUSH_HEIGHT,
-                color
-            });
+        const clientX = ('touches' in e) ?
+            e.touches[0].clientX :
+            e.clientX;
+        const clientY = ('touches' in e) ?
+            e.touches[0].clientY :
+            e.clientY;
+        const x = Math.round(clientX - rect.left);
+        const y = Math.round(clientY - rect.top);
+        dispatch({
+            type: 'draw',
+            save,
+            section,
+            option,
+            x,
+            y,
+            width: BRUSH_WIDTH,
+            height: BRUSH_HEIGHT,
+            color
+        });
         if (!canvasRef.current) {
             return;
         }
@@ -120,12 +126,15 @@ const SteamworksIdEditor: React.FC<Props> = ({save, section, option}) => {
             <canvas
                 width={WIDTH}
                 height={HEIGHT}
-                className="relative"
+                className="relative touch-none"
                 ref={canvasRef}
                 onMouseDown={startDrawing}
                 onMouseMove={moveCallback}
                 onMouseUp={stopDrawing}
                 onMouseOut={stopDrawing}
+                onTouchStart={startDrawing}
+                onTouchEnd={stopDrawing}
+                onTouchMove={moveCallback}
             />
         </div>
     </div>;
