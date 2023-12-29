@@ -73,7 +73,7 @@ const RoomViewer: React.FC<Props> = ({save, section, roomOption, xOption, yOptio
     }, [changeXY]);
     return <div className="flex flex-col justify-center items-center">
         <h3 className="text-xl">Drag the map (or click and use arrow buttons) to change location!</h3>
-        <div className="w-[640px] h-[480px] overflow-hidden mb-4 relative flex items-center justify-center">
+        <div className="w-[640px] h-[480px] max-w-full overflow-hidden mb-4 relative flex items-center justify-center">
             <img
                 src={`../rooms/${room}.png`}
                 alt={`Map of the room ${room}.`}

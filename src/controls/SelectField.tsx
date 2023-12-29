@@ -25,7 +25,7 @@ export const SelectDropdown: React.FC<DropdownProps> = ({mapping, fieldName, val
         await onChange(event.currentTarget.value, index);
     }, [onChange, index]);
     return <select
-        className="text-black p-1"
+        className="text-black p-1 max-w-full"
         name={fieldName}
         id={fieldName}
         onChange={onChangeWrapper}
