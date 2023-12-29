@@ -130,12 +130,17 @@ function parseDSGrid(value: string): IniGrid {
     let height = 0;
     let val = null;
     [ptr, height] = parseInt32LE(value, ptr);
-    const grid: IniGrid = [];
-    for (let y = 0; y < height; ++y) {
-        grid.push([]);
-        for (let x = 0; x < width; ++x) {
+    const grid: IniGrid = Array(height)
+        .fill([])
+        .map(() => Array(width)
+            .fill({
+                type: GMValueType.UNDEFINED,
+                value: 0
+            }));
+    for (let x = 0; x < width; ++x) {
+        for (let y = 0; y < height; ++y) {
             [ptr, val] = parseGMValue(value, ptr);
-            grid[y].push(val);
+            grid[y][x] = val;
         }
     }
     return grid;
@@ -243,7 +248,10 @@ function stringifyGMValue(value: GMValue | IniSimpleValue) {
 function stringifyGrid(value: IniGrid): string {
     const width = value[0].length;
     const height = value.length;
-    return `5B020000${stringifyInt32LE(width)}${stringifyInt32LE(height)}${value
+    return `5B020000${stringifyInt32LE(width)}${stringifyInt32LE(height)}${value[0]
+        // Matrix transposition
+        .map((_, x) => value.map(row => row[x]))
+        // Conversion of values to their representation
         .map(row => row
             .map(val => stringifyGMValue(val))
             .join(''))
