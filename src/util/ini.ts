@@ -6,13 +6,30 @@ interface OrderPreservingMap<K extends KeyType, V> {
 
 type GMReal = number;
 type GMString = string;
+// https://github.com/YoYoGames/GMEXT-Steamworks/blob/54192eb/source/Steamworks_vs/Steamworks/YYRValue.h
 enum GMValueType {
     REAL = 0,
     STRING = 1,
-    REAL_2 = 0xD
+    ARRAY = 2,
+    PTR = 3,
+    // Deprecated
+    VEC3 = 4,
+    UNDEFINED = 5,
+    OBJECT = 6,
+    INT32 = 7,
+    // Deprecated
+    VEC4 = 8,
+    // Deprecated
+    VEC44 = 9,
+    INT64 = 10,
+    ACCESSOR = 11,
+    NULL = 12,
+    BOOL = 13,
+    ITERATOR = 14,
+    REF = 15
 };
 type GMValue = {
-    type: GMValueType.REAL | GMValueType.REAL_2;
+    type: GMValueType.REAL | GMValueType.BOOL;
     value: GMReal;
 } | {
     type: GMValueType.STRING;
@@ -68,7 +85,7 @@ function parseGMString(str: string, ptr: number): [number, GMString] {
 
 function parseGMValue(str: string, ptr: number): [number, GMValue] {
     const [ptr2, type] = parseInt32LE(str, ptr);
-    if (type === GMValueType.REAL || type === GMValueType.REAL_2) {
+    if (type === GMValueType.REAL || type === GMValueType.BOOL) {
         const [ptr3, value] = parseGMReal(str, ptr2);
         return [ptr3, {type, value}];
     }
@@ -101,7 +118,7 @@ function parseDSMap(value: string): IniMap {
     while (--length >= 0) {
         [ptr, key] = parseGMValue(value, ptr);
         [ptr, val] = parseGMValue(value, ptr);
-        // Hopefully, the keys won't be of type REAL_2!
+        // Hopefully, the keys won't be of type BOOL!
         map.data[key.value] = val;
         map.order.push(key.value);
     }
@@ -205,14 +222,14 @@ function stringifyGMString(value: string) {
 
 function stringifyGMValue(value: GMValue | IniSimpleValue) {
     if (typeof value === 'number') {
-        // Hopefully, we won't use this when the type is REAL_2!
+        // Hopefully, we won't use this when the type is BOOL!
         return `${stringifyInt32LE(GMValueType.REAL)}${stringifyGMReal(value)}`;
     }
     if (typeof value === 'string') {
         return `${stringifyInt32LE(GMValueType.STRING)}${stringifyGMString(value)}`;
     }
     if (typeof value === 'object') {
-        if (value.type === GMValueType.REAL || value.type === GMValueType.REAL_2) {
+        if (value.type === GMValueType.REAL || value.type === GMValueType.BOOL) {
             return `${stringifyInt32LE(value.type)}${stringifyGMReal(value.value)}`;
         }
         if (value.type === GMValueType.STRING) {
