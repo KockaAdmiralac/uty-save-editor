@@ -7,7 +7,7 @@ interface OrderPreservingMap<K extends KeyType, V> {
 type GMReal = number;
 type GMString = string;
 // https://github.com/YoYoGames/GMEXT-Steamworks/blob/54192eb/source/Steamworks_vs/Steamworks/YYRValue.h
-enum GMValueType {
+export enum GMValueType {
     REAL = 0,
     STRING = 1,
     ARRAY = 2,
@@ -28,7 +28,7 @@ enum GMValueType {
     ITERATOR = 14,
     REF = 15
 };
-type GMValue = {
+export type GMValue = {
     type: GMValueType.REAL | GMValueType.BOOL;
     value: GMReal;
 } | {
@@ -36,12 +36,12 @@ type GMValue = {
     value: GMString;
 };
 
-type IniReal = number;
-type IniString = string;
-type IniSimpleValue = IniReal | IniString;
-type IniList = GMValue[];
-type IniGrid = GMValue[][];
-type IniMap = OrderPreservingMap<IniSimpleValue, GMValue>;
+export type IniReal = number;
+export type IniString = string;
+export type IniSimpleValue = IniReal | IniString;
+export type IniList = GMValue[];
+export type IniGrid = GMValue[][];
+export type IniMap = OrderPreservingMap<IniSimpleValue, GMValue>;
 export type IniValue = IniSimpleValue | IniList | IniGrid | IniMap;
 export type IniFile = OrderPreservingMap<string, OrderPreservingMap<string, IniValue>>;
 
