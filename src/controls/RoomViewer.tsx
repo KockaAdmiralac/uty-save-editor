@@ -86,6 +86,7 @@ const RoomViewer: React.FC<Props> = ({save, section, roomOption, xOption, yOptio
                 onMouseDown={startMoving}
                 onMouseMove={moveCallback}
                 onMouseUp={stopMoving}
+                onMouseOut={stopMoving}
                 onKeyDown={keyCallback}
                 ref={imgRef}
             />
