@@ -8,12 +8,6 @@ const HEIGHT = 147;
 const BRUSH_WIDTH = 3;
 const BRUSH_HEIGHT = 3;
 
-interface Props {
-    save: SaveFileName;
-    section: string;
-    option: string;
-}
-
 const COLORS = [
     [0,     0,      0,      0],
     [213,   222,    231,    255],
@@ -25,6 +19,34 @@ const COLORS = [
     [141,   37,     17,     255],
     [68,    6,      6,      255]
 ];
+
+interface Props {
+    save: SaveFileName;
+    section: string;
+    option: string;
+}
+
+interface ColorButtonProps {
+    color: number;
+    currentColor: number;
+    setColor: (color: number) => void;
+}
+
+const ColorButton: React.FC<ColorButtonProps> = ({color, currentColor, setColor}) => {
+    const selectColor = useCallback(() => setColor(color), [setColor, color]);
+    const isSelected = currentColor === color;
+    const [r, g, b, a] = COLORS[color];
+    return <button
+        style={{
+            backgroundColor: `rgba(${r}, ${g}, ${b}, ${a})`
+        }}
+        className={`w-6 h-6 border-2 ${isSelected ?
+            'border-yellow-400' :
+            'border-white'
+        }`}
+        onClick={selectColor}
+    />
+};
 
 const SteamworksIdEditor: React.FC<Props> = ({save, section, option}) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -49,10 +71,6 @@ const SteamworksIdEditor: React.FC<Props> = ({save, section, option}) => {
         const imageData = new ImageData(dataArray, WIDTH, HEIGHT);
         ctx.putImageData(imageData, 0, 0);
     }, [grid]);
-    const selectColor = useCallback((e: MouseEvent<HTMLButtonElement>) => {
-        const idSplit = e.currentTarget.id.split('-');
-        setColor(Number(idSplit[idSplit.length - 1]));
-    }, [setColor]);
     const startDrawing = useCallback((e: SyntheticEvent) => {
         e.preventDefault();
         setDrawing(true);
@@ -105,14 +123,11 @@ const SteamworksIdEditor: React.FC<Props> = ({save, section, option}) => {
     }, [drawing, dispatch, save, section, option, color]);
     return <div className="flex flex-col justify-center items-center">
         <div className="flex gap-2 mb-2">{COLORS
-            .map(([r, g, b, a], idx) => <button
+            .map((_, idx) => <ColorButton
                 key={idx}
-                style={{
-                    backgroundColor: `rgba(${r}, ${g}, ${b}, ${a})`
-                }}
-                className={`w-6 h-6 border-2 ${(color === idx) ? 'border-yellow-400' : 'border-white' }`}
-                id={`steamworks-id-color-${idx}`}
-                onClick={selectColor}
+                color={idx}
+                currentColor={color}
+                setColor={setColor}
             />)
         }</div>
         <div className="relative">
