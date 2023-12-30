@@ -1,5 +1,7 @@
+import { AnyElement } from "../util/types";
+
 interface Props {
-    children: React.ReactElement | string;
+    children: AnyElement;
 }
 
 const HintMessage: React.FC<Props> = ({ children }) => 

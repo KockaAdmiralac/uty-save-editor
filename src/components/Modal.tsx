@@ -1,10 +1,11 @@
 import React, { MouseEvent, useCallback } from "react";
+import { AnyElement } from "../util/types";
 
 interface Props {
     title: string;
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
-    children: React.ReactElement;
+    children: AnyElement;
 }
 
 const Modal: React.FC<Props> = ({title, isOpen, setIsOpen, children}) => {
