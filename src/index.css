@@ -25,6 +25,10 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-footer a {
+a {
     @apply text-blue-400 underline;
+}
+
+p {
+    @apply mb-4;
 }

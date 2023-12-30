@@ -12,7 +12,7 @@ type ButtonProps = {
 const Button: React.FC<ButtonProps> = (props) => {
     if ('page' in props) {
         return <Link
-            className="text-white hover:text-yellow-400 py-3 border-white hover:border-yellow-400 border-8 px-6 text-center"
+            className="text-white hover:text-yellow-400 py-3 border-white hover:border-yellow-400 border-8 px-6 text-center no-underline"
             to={props.page}
         >{props.label}</Link>;
     } else {
