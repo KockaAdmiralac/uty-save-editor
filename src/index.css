@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: "Determination Mono";
-    src: url("https://images.wikia.nocookie.net/undertale/images/c/c0/Determination.eot");
-    src: url("https://images.wikia.nocookie.net/undertale/images/c/c0/Determination.eot?#iefix") format("embedded-opentype"),
-         url("https://images.wikia.nocookie.net/undertale/images/a/aa/Determination.woff2") format("woff2"),
-         url("https://images.wikia.nocookie.net/undertale/images/3/37/Determination.woff") format("woff"),
-         url("https://images.wikia.nocookie.net/undertale/images/c/cd/Determination.ttf") format("truetype"),
-         url("https://images.wikia.nocookie.net/undertale/images/7/7f/Determination.svg#Undertale") format("svg");
+    src: url("../public/fonts/determination.eot");
+    src: url("../public/fonts/determination.eot?#iefix") format("embedded-opentype"),
+         url("../public/fonts/determination.woff2") format("woff2"),
+         url("../public/fonts/determination.woff") format("woff"),
+         url("../public/fonts/determination.ttf") format("truetype"),
+         url("../public/fonts/determination.svg#Undertale") format("svg");
 }
 
 body {
