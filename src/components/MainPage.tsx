@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './Button';
 import Footer from './Footer';
+import HintMessage from './HintMessage';
 
 const MainPage: React.FC = () => {
     return <main className="flex flex-col items-center justify-center min-h-screen md:ml-20 md:mr-20 lg:ml-80 lg:mr-80 max-sm:ml-4 max-sm:mr-4">
@@ -12,9 +13,7 @@ const MainPage: React.FC = () => {
             <Button label="Controls.sav" page="controls" />
             <Button label="Tempsave.sav" page="tempsave" />
         </div>
-        <p className="text-sm text-yellow-400">
-            Not sure? You probably want Save.sav.
-        </p>
+        <HintMessage>Not sure? You probably want Save.sav.</HintMessage>
         <Footer />
     </main>;
 };
