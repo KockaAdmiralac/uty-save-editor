@@ -4,6 +4,7 @@ import { SaveContext } from '../util/Context';
 import { stringifyIni } from '../util/ini';
 import Modal from '../components/Modal';
 import { SaveFileName } from '../util/save';
+import ErrorMessage from '../components/ErrorMessage';
 
 interface Props {
     fileName: string;
@@ -13,6 +14,7 @@ interface Props {
 const Download: React.FC<Props> = ({fileName, save}) => {
     const {data} = useContext(SaveContext);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [error, setError] = useState('');
     const downloadRef = useRef<HTMLAnchorElement>(null);
     const onModalOpen = useCallback(() => {
         setModalIsOpen(true);
@@ -21,13 +23,17 @@ const Download: React.FC<Props> = ({fileName, save}) => {
         if (!downloadRef.current) {
             return;
         }
-        const blob = new Blob([stringifyIni(data[save].data)]);
-        const blobUrl = URL.createObjectURL(blob);
-        downloadRef.current.href = blobUrl;
-        downloadRef.current.download = fileName;
-        downloadRef.current.click();
-        URL.revokeObjectURL(blobUrl);
-        setModalIsOpen(false);
+        try {
+            const blob = new Blob([stringifyIni(data[save].data)]);
+            const blobUrl = URL.createObjectURL(blob);
+            downloadRef.current.href = blobUrl;
+            downloadRef.current.download = fileName;
+            downloadRef.current.click();
+            URL.revokeObjectURL(blobUrl);
+            setModalIsOpen(false);
+        } catch (error: any) {
+            setError(error.message);
+        }
     }, [data, fileName, save]);
     return <>
         <Button label="Download" onClick={onModalOpen} />
@@ -36,18 +42,17 @@ const Download: React.FC<Props> = ({fileName, save}) => {
             setIsOpen={setModalIsOpen}
             title="Download file"
         >
-            <>
-                {/* TODO: Make this message better. */}
-                <p>
-                    After downloading, place this file
-                    in <code>%LOCALAPPDATA%/Undertale_Yellow</code> on Windows
-                    or <code>~/.config/Undertale_Yellow</code> on Linux.
-                </p>
-                <div className="flex justify-center mt-4">
-                    <Button label="Download" onClick={onDownload} />
-                    <a className="hidden" href="/" ref={downloadRef}>Placeholder</a>
-                </div>
-            </>
+            {/* TODO: Make this message better. */}
+            <p>
+                After downloading, place this file
+                in <code>%LOCALAPPDATA%/Undertale_Yellow</code> on Windows
+                or <code>~/.config/Undertale_Yellow</code> on Linux.
+            </p>
+            <ErrorMessage message={error} />
+            <div className="flex justify-center mt-4">
+                <Button label="Download" onClick={onDownload} />
+                <a className="hidden" href="/" ref={downloadRef}>Placeholder</a>
+            </div>
         </Modal>
     </>;
 };

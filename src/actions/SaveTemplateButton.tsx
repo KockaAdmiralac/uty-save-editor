@@ -1,4 +1,4 @@
-import {ChangeEvent, MouseEvent, useCallback, useContext, useState} from "react";
+import {ChangeEvent, useCallback, useContext, useState} from "react";
 import Button from "../components/Button";
 import {SaveFileName} from "../util/save";
 import Modal from "../components/Modal";
@@ -29,8 +29,7 @@ const SaveTemplateButton: React.FC<Props> = ({ save, text }) => {
     const onChangeTemplateName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setTemplateName(e.currentTarget.value);
     }, [setTemplateName]);
-    const onSave = useCallback((e: MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
+    const onSave = useCallback(() => {
         try {
             const allUserTemplates = JSON.parse(localStorage.getItem('user-templates') || '{}');
             allUserTemplates[save] = allUserTemplates[save] || {};
@@ -53,25 +52,23 @@ const SaveTemplateButton: React.FC<Props> = ({ save, text }) => {
             setIsOpen={setModalIsOpen}
             title="Save as a template"
         >
-            <>
-                <p>
-                    You can save your current save data as a template for
-                    further modification later. Just enter a name for your
-                    template, click Save and you will be later be able to pick
-                    your template using the Load template button.
-                </p>
-                <p className="text-red-500">{error}</p>
-                <form className="flex flex-col w-1/2 m-auto justify-center mt-4">
-                    <input
-                        type="text"
-                        name="save-template-name"
-                        id="save-template-name"
-                        onChange={onChangeTemplateName}
-                        className="mb-4 text-black"
-                    ></input>
-                    <Button label="Save template" onClick={onSave} />
-                </form>
-            </>
+            <p>
+                You can save your current save data as a template for
+                further modification later. Just enter a name for your
+                template, click Save and you will be later be able to pick
+                your template using the Load template button.
+            </p>
+            <p className="text-red-500">{error}</p>
+            <form className="flex flex-col w-1/2 m-auto justify-center mt-4">
+                <input
+                    type="text"
+                    name="save-template-name"
+                    id="save-template-name"
+                    onChange={onChangeTemplateName}
+                    className="mb-4 text-black"
+                ></input>
+                <Button label="Save template" onClick={onSave} />
+            </form>
         </Modal>
     </>;
 };

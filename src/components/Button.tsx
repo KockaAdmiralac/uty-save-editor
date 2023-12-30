@@ -17,6 +17,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         >{props.label}</Link>;
     } else {
         return <button
+            type="button"
             className="text-white hover:text-yellow-400 py-3 border-white hover:border-yellow-400 border-8 px-6 text-center"
             onClick={props.onClick}    
         >{props.label}</button>
