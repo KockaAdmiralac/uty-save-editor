@@ -102,7 +102,8 @@ export function contextReducer(state: SaveFiles, action: SaveContextAction): Sav
             (newOptionData as IniList).splice(action.index, 1);
             break;
         case 'draw':
-            const grid = newOptionData as IniGrid;
+            // Yes, I am sure I want to mutate the state here.
+            const grid = state[save].data.data[section].data[option] as IniGrid;
             const gridWidth = grid[0].length;
             const gridHeight = grid.length;
             const {x, y, width, height, color} = action;
