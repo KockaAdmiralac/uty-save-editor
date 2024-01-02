@@ -32,3 +32,7 @@ a {
 p {
     @apply mb-4;
 }
+
+em {
+    @apply text-yellow-400;
+}

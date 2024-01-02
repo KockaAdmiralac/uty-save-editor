@@ -70,12 +70,10 @@ const SaveEditor: React.FC = () => {
             <p className="mb-4">
                 Here you can edit various aspects of your save file. Once you
                 are done editing, you can download the save file using 
-                the <em className="text-yellow-400">Download</em> button, or
-                save it as a template for future use using
-                the <em className="text-yellow-400">Save template</em> button.
-                If you want to load a different save file, you can use
-                the <em className="text-yellow-400">Load&nbsp;</em>
-                or <em className="text-yellow-400">Load template</em> buttons.
+                the <em>Download</em> button, or save it as a template for
+                future use using the <em>Save template</em> button. If you want
+                to load a different save file, you can use
+                the <em>Load</em> or <em>Load template</em> buttons.
             </p>
             <div className="flex max-sm:flex-col gap-4 mb-8 justify-center w-full">
                 <DownloadButton fileName="Save.sav" save="save" />
