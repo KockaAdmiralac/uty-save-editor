@@ -12,8 +12,12 @@ interface Props {
 const LoadScreen: React.FC<Props> = ({ fileName, save, showTemplate }) => {
     return <>
         <p className="mb-4">
-            Save file {fileName} not loaded. You can either choose to load one
-            of your own save files, or a template save file.
+            Save file {fileName} not loaded. {showTemplate ?
+            <>
+                You can either choose to load one of your own save files, or a
+                template save file.
+            </> :
+            null}
         </p>
         <div className="flex max-sm:flex-col gap-4">
             <LoadButton fileName={fileName} save={save} text="Load my save file" />
