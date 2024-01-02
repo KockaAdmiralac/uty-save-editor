@@ -11,7 +11,7 @@ interface Props {
     save: SaveFileName;
 }
 
-const Download: React.FC<Props> = ({fileName, save}) => {
+const DownloadButton: React.FC<Props> = ({fileName, save}) => {
     const {data} = useContext(SaveContext);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [error, setError] = useState('');
@@ -57,4 +57,4 @@ const Download: React.FC<Props> = ({fileName, save}) => {
     </>;
 };
 
-export default Download;
+export default DownloadButton;
