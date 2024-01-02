@@ -64,7 +64,9 @@ export function contextReducer(state: SaveFiles, action: SaveContextAction): Sav
         sectionData.order.push(option);
     }
     // For a lack of a better deep-copy method.
-    let newOptionData: IniValue = JSON.parse(JSON.stringify(optionData));
+    let newOptionData: IniValue = optionData ?
+        JSON.parse(JSON.stringify(optionData)) :
+        undefined;
     switch (action.type) {
         case 'change':
             if (typeof action.index === 'number') {
