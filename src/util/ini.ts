@@ -29,7 +29,11 @@ export enum GMValueType {
     REF = 15
 };
 export type GMValue = {
-    type: GMValueType.REAL | GMValueType.BOOL;
+    type:
+        GMValueType.REAL |
+        GMValueType.BOOL |
+        GMValueType.INT32 |
+        GMValueType.INT64;
     value: GMReal;
 } | {
     type: GMValueType.STRING;
@@ -92,6 +96,16 @@ function parseGMValue(str: string, ptr: number): [number, GMValue] {
     if (type === GMValueType.STRING) {
         const [ptr3, value] = parseGMString(str, ptr2);
         return [ptr3, {type, value}];
+    }
+    if (type === GMValueType.INT32) {
+        const [ptr3, value] = parseInt32LE(str, ptr2);
+        return [ptr3, {type, value}];
+    }
+    if (type === GMValueType.INT64) {
+        const [ptr3, valueLow] = parseInt32LE(str, ptr2);
+        const [ptr4, valueHigh] = parseInt32LE(str, ptr3);
+        const value = (valueHigh << 32) | valueLow;
+        return [ptr4, {type, value}];
     }
     throw new Error(`INI parse error: Unknown GM value type ${type}.`);
 }
@@ -234,11 +248,16 @@ function stringifyGMValue(value: GMValue | IniSimpleValue) {
         return `${stringifyInt32LE(GMValueType.STRING)}${stringifyGMString(value)}`;
     }
     if (typeof value === 'object') {
-        if (value.type === GMValueType.REAL || value.type === GMValueType.BOOL) {
-            return `${stringifyInt32LE(value.type)}${stringifyGMReal(value.value)}`;
-        }
         if (value.type === GMValueType.STRING) {
             return `${stringifyInt32LE(value.type)}${stringifyGMString(value.value)}`;
+        }
+        if (
+            value.type === GMValueType.REAL ||
+            value.type === GMValueType.BOOL ||
+            value.type === GMValueType.INT32 ||
+            value.type === GMValueType.INT64
+        ) {
+            return `${stringifyInt32LE(value.type)}${stringifyGMReal(value.value)}`;
         }
         throw new Error(`INI stringify error: Unknown GM value type ${value.type}.`);
     }
