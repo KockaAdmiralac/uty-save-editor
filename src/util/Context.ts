@@ -60,7 +60,7 @@ export function contextReducer(state: SaveFiles, action: SaveContextAction): Sav
         state[save].data.order.push(section);
     }
     const optionData = sectionData.data[option];
-    if (!optionData) {
+    if (typeof optionData === 'undefined') {
         sectionData.order.push(option);
     }
     // For a lack of a better deep-copy method.
