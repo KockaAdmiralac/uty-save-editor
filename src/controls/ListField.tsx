@@ -54,7 +54,7 @@ const RemoveButton: React.FC<RemoveButtonProps> = ({save, section, option, count
 
 const ListField: React.FC<Props> = ({save, section, option, countOption, item, defaultValue}) => {
     const {data, dispatch} = useContext(SaveContext);
-    const list = data[save].data.data[section]?.data[option] as IniList;
+    const list = (data[save].data.data[section]?.data[option] || []) as IniList;
     const onChange: OnChangeFunc = useCallback((value, index) => {
         dispatch({
             type: 'change',
