@@ -10,30 +10,25 @@ import SelectField, { SelectDropdown } from '../controls/SelectField';
 import BooleanField from '../controls/BooleanField';
 import TextField from '../controls/TextField';
 import {SaveContext} from '../util/Context';
-import accessoryMapping from '../mappings/accessories.json';
-import ammoMapping from '../mappings/ammo.json';
-import armorMapping from '../mappings/armor.json';
 import directionMapping from '../mappings/direction.json';
 import fastTravelMapping from '../mappings/fast-travel.json';
 import followerMapping from '../mappings/follower.json';
 import funValueMapping from '../mappings/fun.json';
-import itemsMapping from '../mappings/items.json';
+import {
+    allItemsMapping,
+    reducedAccessoryMapping,
+    reducedAmmoMapping,
+    reducedArmorMapping,
+    reducedWeaponMapping
+} from '../mappings/items';
 import mailMapping from '../mappings/mail.json';
 import roomsMapping from '../mappings/rooms.json';
 import spriteMapping from '../mappings/sprite.json';
-import weaponMapping from '../mappings/weapons.json';
 import LoadScreen from './LoadScreen';
 import Footer from '../components/Footer';
 import RoomViewer from '../controls/RoomViewer';
 import ListField from '../controls/ListField';
 import SteamworksIdEditor from '../controls/SteamworksIdEditor';
-
-const reduceEquipmentMapping = (mapping: Record<string, {label: string}>) =>
-    Object.fromEntries(
-        Object
-            .entries(mapping)
-            .map(([key, {label}]) => [key, label])
-    );
 
 const SaveEditor: React.FC = () => {
     const {data} = useContext(SaveContext);
@@ -46,18 +41,7 @@ const SaveEditor: React.FC = () => {
             .filter(([_, name]) => name.endsWith(' [SAVE]'))
             .map(([key, value]) => [key, value.replace(/ \[SAVE\]$/, '')])
     );
-    const reducedAccessoryMapping = reduceEquipmentMapping(accessoryMapping);
-    const reducedAmmoMapping = reduceEquipmentMapping(ammoMapping);
-    const reducedArmorMapping = reduceEquipmentMapping(armorMapping);
-    const reducedWeaponMapping = reduceEquipmentMapping(weaponMapping);
     const [roomsMappingState, setRoomsMappingState] = useState<Record<string, string>>(roomsMappingOnlySaves);
-    const allItemsMapping = {
-        ...itemsMapping,
-        Armor: reducedArmorMapping,
-        Accessories: reducedAccessoryMapping,
-        Weapons: reducedWeaponMapping,
-        Ammo: reducedAmmoMapping
-    };
     const changeRoomsMapping = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setRoomsMappingState(event.currentTarget.checked ?
             roomsMappingOnlySaves :
