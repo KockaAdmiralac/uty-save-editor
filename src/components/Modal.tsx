@@ -25,7 +25,7 @@ const Modal: React.FC<Props> = ({title, isOpen, setIsOpen, children}) => {
                     onClick={onClickInside}
                 >
                     <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                        <h3 className="text-3xl font-semibold">{title}</h3>
+                        <h3 className="text-3xl">{title}</h3>
                         <button
                             className="ml-auto text-3xl leading-none"
                             onClick={close}
