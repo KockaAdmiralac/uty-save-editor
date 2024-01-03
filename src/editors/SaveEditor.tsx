@@ -241,8 +241,8 @@ const SaveEditor: React.FC = () => {
                     save="save"
                     section="Deaths"
                     option="00"
-                    label="Total death count against certain bosses"
-                    help="The bosses are Decibat, Dalv, Micro Froggit, Martlet (Pacifist or Genocide) and Flowey. This value is only saved by Flowey, so it may not be present on Pacifist or Genocide runs."
+                    label="Total death count"
+                    help="This value is generally wrong due to a bug. This value is only saved by Flowey, so it may not be present on Pacifist or Genocide runs."
                 />
                 <NumberField
                     save="save"
