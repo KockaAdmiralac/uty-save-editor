@@ -38,10 +38,20 @@ const SaveEditor: React.FC = () => {
     const roomsMappingOnlySaves = Object.fromEntries(
         Object
             .entries(roomsMapping)
-            .filter(([_, name]) => name.endsWith(' [SAVE]'))
-            .map(([key, value]) => [key, value.replace(/ \[SAVE\]$/, '')])
+            .map(([areaName, rooms]) => [areaName, Object
+                .entries(rooms)
+                .filter(([_, name]) => name.endsWith(' [SAVE]'))
+                .map(([key, value]) => [key, value.replace(/ \[SAVE\]$/, '')])
+            ])
+            .filter(([_, rooms]) => rooms.length > 0)
+            .map(([areaName, rooms]) => [
+                String(areaName),
+                typeof rooms === 'string' ?
+                    {[rooms]: '???'} :
+                    Object.fromEntries(rooms)
+            ])
     );
-    const [roomsMappingState, setRoomsMappingState] = useState<Record<string, string>>(roomsMappingOnlySaves);
+    const [roomsMappingState, setRoomsMappingState] = useState<Record<string, Record<string, string>>>(roomsMappingOnlySaves);
     const changeRoomsMapping = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setRoomsMappingState(event.currentTarget.checked ?
             roomsMappingOnlySaves :
