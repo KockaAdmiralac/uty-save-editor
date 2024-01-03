@@ -30,7 +30,12 @@ const TempSaveEditor: React.FC = () => {
         <h1 className="text-4xl mb-8">Temporary Save Editor</h1>
         {data.tempsave.loaded ? <>
             <p className="mb-4">
-                This save is used when retrying from a battle
+                This save is used when retrying after death in battle. This
+                means that if you want to change your stats or affect the battle
+                in any other way while you are in battle and do not want to
+                listen to the battle intro again, you can modify and replace
+                this file, then die. Once you're done editing, use
+                the <em>Download</em> button to download the save file.
             </p>
             <div className="flex max-sm:flex-col gap-4 mb-8 justify-center w-full">
                 <DownloadButton fileName="tempsave.sav" save="tempsave" />
@@ -74,12 +79,22 @@ const TempSaveEditor: React.FC = () => {
                         />)
             }</Section>
             <Section name="Flowey">
+                <p>
+                    These options affect the final Flowey battle. Note that you
+                    still need to replace your save file while in battle and die
+                    to apply these changes.
+                </p>
                 <SelectField save="tempsave" section="Save1" option="ffight" label="Flowey fight phase" mapping={floweyMappings.ffight} isNumber={true} />
                 {floweyPhase === 1 &&
                     <SelectField save="tempsave" section="Special" option="0" label="Sub-phase" mapping={floweyMappings.subphases} />}
                 {floweyPhase === 1 &&
                     <NumberField save="tempsave" section="Special" option="4" label="Attack number" help="Usually between 0 and 11." />}
-                {floweyPhase === 1 && <h3>Attack list</h3>}
+                {floweyPhase === 1 && <h3 className="text-xl">Attack list</h3>}
+                {floweyPhase === 1 && <p>
+                    Attacks which are in this list get randomly picked by Flowey
+                    on turns in which he's picking his regular attacks. If there
+                    are none to pick, he picks the attack 1.
+                </p>}
                 {floweyPhase === 1 && <ListField
                     save="tempsave"
                     section="Special"
@@ -93,7 +108,13 @@ const TempSaveEditor: React.FC = () => {
                     />}
                     defaultValue={1}
                 />}
-                {floweyPhase === 1 && <h3>Stolen attack list</h3>}
+                {floweyPhase === 1 && <h3 className="text-xl">Stolen attack list</h3>}
+                {floweyPhase === 1 && <p>
+                    Attacks which are in this list get randomly picked by Flowey
+                    on turns in which he's picking attacks by other monsters to
+                    imitate. If there are none to pick, he does not imitate
+                    anybody.
+                </p>}
                 {floweyPhase === 1 && <ListField
                     save="tempsave"
                     section="Special"
@@ -107,7 +128,12 @@ const TempSaveEditor: React.FC = () => {
                     />}
                     defaultValue={1}
                 />}
-                {floweyPhase === 1 && <h3>Room list</h3>}
+                {floweyPhase === 1 && <h3 className="text-xl">Room list</h3>}
+                {floweyPhase === 1 && <p>
+                    When Flowey is about to place Clover in a room to run from
+                    the vines, he picks a room from this list. If there are no
+                    rooms to pick, he does not have a room-based attack.
+                </p>}
                 {floweyPhase === 1 && <ListField
                     save="tempsave"
                     section="Special"
