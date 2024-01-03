@@ -1,0 +1,49 @@
+{
+    "ffight": {
+        "0": "Not fighting Flowey",
+        "1": "Phase 1",
+        "2": "Phase 2"
+    },
+    "subphases": {
+        "0": "Sub-phase 1",
+        "1": "Sub-phase 2",
+        "2": "Sub-phase 3",
+        "3": "Sub-phase 4"
+    },
+    "attacks": {
+        "1": "Attack 1",
+        "2": "Attack 2",
+        "3": "Attack 3",
+        "4": "Attack 4",
+        "5": "Attack 5",
+        "6": "Attack 6",
+        "7": "Attack 7",
+        "8": "Attack 8",
+        "9": "Attack 9"
+    },
+    "stolenAttacks": {
+        "1": "Decibat",
+        "2": "El Bailador",
+        "3": "Starlo",
+        "4": "Guardener",
+        "5": "Axis",
+        "6": "Dalv",
+        "7": "Ceroba (Genocide)"
+    },
+    "rooms": {
+        "226": "Ruins",
+        "227": "Dark Ruins",
+        "228": "Waterfall",
+        "229": "Dunes",
+        "230": "Hotland",
+        "231": "Steamworks"
+    },
+    "petals": {
+        "0": "Mechanical petal",
+        "1": "Polygonal petal",
+        "2": "Paper petal",
+        "3": "Clay petal",
+        "4": "Organic petal",
+        "5": "Patchworked petal"
+    }
+}
