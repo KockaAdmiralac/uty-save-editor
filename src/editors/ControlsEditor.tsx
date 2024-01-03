@@ -37,9 +37,9 @@ const ControlsEditor: React.FC = () => {
                 <BooleanField save="controls" section="Controls" option="easymode" label="Easy Mode" />
             </Section>
             <Section name="Controls">
-                <SelectField save="controls" section="Controls" option="Z" label="CONFIRM gamepad button" mapping={gamepadControls} />
-                <SelectField save="controls" section="Controls" option="X" label="CANCEL gamepad button" mapping={gamepadControls} />
-                <SelectField save="controls" section="Controls" option="C" label="MENU gamepad button" mapping={gamepadControls} />
+                <SelectField save="controls" section="Controls" option="Z" label="CONFIRM gamepad button" mapping={gamepadControls} isNumber={true} />
+                <SelectField save="controls" section="Controls" option="X" label="CANCEL gamepad button" mapping={gamepadControls} isNumber={true} />
+                <SelectField save="controls" section="Controls" option="C" label="MENU gamepad button" mapping={gamepadControls} isNumber={true} />
             </Section>
             <Section name="Other">
                 <p>

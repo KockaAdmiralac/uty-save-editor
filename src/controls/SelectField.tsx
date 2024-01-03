@@ -17,13 +17,17 @@ interface DropdownProps {
     fieldName?: string;
     value: IniValue;
     index: number;
-    onChange: (value: string, index: number) => void | Promise<void>;
+    isNumber?: boolean;
+    onChange: (value: string | number, index: number) => void | Promise<void>;
 }
 
-export const SelectDropdown: React.FC<DropdownProps> = ({mapping, fieldName, value, index, onChange}) => {
+export const SelectDropdown: React.FC<DropdownProps> = ({mapping, fieldName, value, index, isNumber, onChange}) => {
     const onChangeWrapper = useCallback(async (event: ChangeEvent<HTMLSelectElement>) => {
-        await onChange(event.currentTarget.value, index);
-    }, [onChange, index]);
+        const value = isNumber ?
+            Number(event.currentTarget.value) :
+            event.currentTarget.value;
+        await onChange(value, index);
+    }, [onChange, index, isNumber]);
     return <select
         className="text-black p-1 max-w-full"
         name={fieldName}
@@ -45,15 +49,15 @@ export const SelectDropdown: React.FC<DropdownProps> = ({mapping, fieldName, val
 const SelectField: React.FC<Props> = ({save, section, option, label, mapping, isNumber}) => {
     const {data, dispatch} = useContext(SaveContext);
     const value = data[save].data.data[section]?.data[option];
-    const onChange = useCallback((value: string) => {
+    const onChange = useCallback((value: string | number) => {
         dispatch({
             type: 'change',
             save,
             section,
             option,
-            value: isNumber ? Number(value) : value
+            value
         });
-    }, [dispatch, option, save, section, isNumber]);
+    }, [dispatch, option, save, section]);
     const fieldName = `${save}-${section}-${option}`;
     return <p className="flex flex-col mb-2">
         <label htmlFor={fieldName}>{label}</label>
@@ -63,6 +67,7 @@ const SelectField: React.FC<Props> = ({save, section, option, label, mapping, is
             value={value}
             onChange={onChange}
             index={0}
+            isNumber={isNumber}
         />
     </p>;
 };
