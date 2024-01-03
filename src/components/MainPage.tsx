@@ -11,7 +11,7 @@ const MainPage: React.FC = () => {
             <Button label="Save.sav" page="save" />
             <Button label="Save02.sav" page="save02" />
             <Button label="Controls.sav" page="controls" />
-            <Button label="Tempsave.sav" page="tempsave" />
+            <Button label="tempsave.sav" page="tempsave" />
         </div>
         <HintMessage>Not sure? You probably want Save.sav.</HintMessage>
         <Footer />
