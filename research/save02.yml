@@ -1,0 +1,13 @@
+00:
+    # Flowey
+    00: Meta Flowey introduction count
+    01: Meta Flowey fight count
+    # Routes
+    02: Whether a Pacifist run has been finished
+    03: Whether a flawed Pacifist run has been finished
+    04: Whether a Genocide run has been finished
+# Play Statistics
+Deaths:
+    00: Total death count against certain bosses
+    01: Death count against Decibat
+    02: Death count against Dalv

@@ -1,0 +1,18 @@
+Controls:
+    # Toggles
+    deadzone: Gamepad deadzone (between 0.01 and 0.99)
+    autorun: Auto-Sprint
+    autoshoot: Auto-Fire
+    autorhythm: Auto-Rhythm
+    screenshake: Shake on hurt
+    retry: Always allow retry
+    easymode: Easy Mode
+    # Controls
+    Z: Button used for CONFIRM?
+    X: Button used for CANCEL?
+    C: Button used for MENU?
+ControlsNameIgnore:
+    # Other
+    Z: Text that appears next to the CONFIRM control in Joystick Config
+    X: Text that appears next to the CANCEL control in Joystick Config
+    C: Text that appears next to the MENU control in Joystick Config

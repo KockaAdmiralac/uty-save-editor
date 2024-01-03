@@ -1,0 +1,263 @@
+Save1:
+    # Battle stats
+    AT - Primary: Clover's AT stat
+    AT - Secondary: Clover's AT modifier by accessories
+    DFP: Like AT - Primary but for DF
+    DFS: Like AT - Secondary but for DF
+    HP: HP
+    MAXHP: Max HP
+    PP: Protection points (invulnerability hits)
+    MAXPP: Maximum PP
+    SP: Speed points (faster turns)
+    MAXSP: Maximum SP
+    RP: Restoration points (increases HP this many turns)
+    MAXRP: Maximum RP
+    EXP: EXP
+    LV: LOVE
+    Gold: Gold
+    # Fun
+    FUN: Fun value
+    # Equipment
+    Ammo: Current eqipped ammo
+    Armor: Current eqipped armor
+    Accessory: Current equipped accessory
+    Weapon: Current equipped weapon
+    # Overworld state
+    room: Room code
+    rmName: Save room name
+    pX: Player's X position
+    pY: Player's Y position
+    dir: Player's direction (0, 1, 2, 3?)
+    playerSprite: Variant of the player's sprite
+        - kanako
+        - normal
+        - snowdin
+        - dunescave
+        - steamworkslava
+        - water
+    playerCanRun: Running enabled (disables during certain cutscenes)
+    Follower: Clover's current follower
+        - obj_martlet_follower
+        - obj_ceroba_follower
+        - The game can die if you put Ceroba where she isn't meant to be
+    # Dimensional Box
+    Satchel: Whether the player has the Dimensional Satchel
+    # Fast Travel
+    FTravel: Fast Travel enabled
+    # (Advanced)
+    gldtrack: Nonfunctional gold tracking in debug mode
+    gldspnttrack: Nonfunctional gold spent tracking in debug mode
+    httrack: Nonfunctional hit tracker in debug mode
+Playtime:
+    # Play Statistics
+    Seconds: The amount of seconds of playtime
+# (Advanced)
+RuinsFlags: 0-3
+Flags: 0-29
+    15: How the Decibat fight ended
+        0: not encountered
+        1: spared by watching
+        2: spared by shooing/talking
+        3: killed
+    17: How the Dalv fight ended
+        0: not encountered
+        1: spared
+        2: killed
+        3: spared on Genocide after sparing Decibat
+        4: spared on Genocide after killing Decibat
+SnowdinFlags: 0-22
+    13: Martlet battle result
+        1: Insulting or confusion)
+        2: Hitting
+    14: Martlet plot value?
+        0: Not finished battle with Martlet
+        1: Finished battle with Martlet
+        2: Martlet/Flowey finished their speech at the dock
+        3: We told Martlet we don't trust her
+        4: We told Martlet we trust her but don't want to leave yet
+        5: We told Martlet we're going off
+    15: Which name has Clover chosen
+        0: Not chosen
+        1: Gun-Hat
+        2: Clover
+DunesFlags: 0-55
+    24: How the Starlo fight ended
+        0: not encountered
+        1: spared
+        2: killed
+    26: How the El Bailador fight ended
+        0: not encountered
+        1: spared
+        2: not encountered due to exhausted kill count
+        3: killed
+    40: How the Genocide Ceroba fight ended
+        0: not encountered
+        1: killed
+DunesFlagsExt: 0-6
+SworksFlags: 0-61
+    20: How the Guardener fight ended
+        0: not encountered
+        1: spared but not watched the cutscene
+        2: spared and watched the cutscene
+        3: killed
+    26: Steamworks ID status
+        0: no ID
+        1: arrived at ID room
+        2: got ID
+    31: How the Axis fight ended
+        0: not encountered
+        1: spared but not watched the cutscene
+        2: spared and watched the cutscene
+        3: killed before turn 8?
+        4: killed on or after turn 8?
+    sworks_id: Grid for drawing the Steamworks ID, colors can be 1-8
+    RbCount: Number of robot parts
+    # Steamworks
+    code: First passcode in the Steamworks factory (stupid green face)
+    code2: Second passcode in the Steamworks factory (furnaces)
+    code3: Third passcode in the Steamworks factory (final floor)
+# (Advanced)
+RbSprite: Index of the robot part's sprite (one for each part)
+RbX: Index of the robot part's X coordinate
+RbY: Index of the robot part's X coordinate
+RbD: Depth of the robot part
+RbS: Scale of the robot part
+RbA: Angle of the robot part
+# Shops
+ItemStock: How many items are left in the stock
+    0: Hndw Coffee
+    1: Hndw Pancake
+    2: G.B. Bear
+    3: Honeydew Pin
+    4: Gunpowder
+    5: Silver Ammo
+    6: Fancy Holster
+    7: Wild Revolver
+    8: Icewater
+    9: Adult Soda
+    10: Root Beer
+    11: Feisty Slider
+    12: Gravity Granola
+    13: Dihydrogen Monoxide
+    14: Popato Chisps
+    15: Safety Goggles
+    16: Monster Candy+
+    17: C-B Strudel
+    18: Floral Cupcake
+    19: Delta Rune Patch
+    20: Icewater (Cafe Dune, Genocide)
+    21: Oasis Latte
+    22: Cnm. Cookie
+    23: Floral Cupcake (Cafe Dune, Genocide)
+# (Advanced)
+HotlandFlags: 0-15
+FloweyFlags: 0-38
+    # Flowey
+    savecount: Number of times the game was saved
+    savenumber: Maximum save number that was reached in the current area (determines Flowey dialogue)
+        Dark Ruins:
+            1: Dark Ruins - Entrance
+            2: Dark Ruins - Atrium
+            3: Dark Ruins - Cliff
+            4: Dark Ruins - Puzzle
+            5: Dark Ruins - Hall
+        Snowdin:
+            1: Snowdin - Delta Rock
+            2: Snowdin - Ruined Shack
+            3: Snowdin - Pathway
+            4: Snowdin - Resort
+            5: Snowdin - Corridor
+        Dunes:
+            1: Dunes - Cave
+            2: Dunes - Tree
+            3: Mines - Elevator
+            4: Mines - Minecart
+            5: Dunes - Mountaintop
+            6: Dunes - Playground
+            7: Dunes - Well
+            8: Wild East - Town
+            9: Wild East - Outskirts
+            10: Wild East - Sunnyside
+            11: Steamw. - Generator
+            12: Steamw. - Raised Path
+            13: Steamw. - Lake
+            14: Steamw. - Offices / Steamw. - ???
+            15: Steamw. - Commons
+            16: Greenhouse
+            17: Steamw. - Crossroads
+            18: Steamw. - Laboratory
+            19: Steamw. - Botany Hall
+            20: Factory - Lobby
+            21: Factory - Offices
+            22: The Furnace
+            23: A Road Ahead
+            24: Estate
+            25: Apt. Complex
+            26: New Home
+            27: New Home
+# (Advanced)
+ExtraFlags: 0-9
+MailFlags: 0-9
+# Mail
+Mail:
+    0: List of strings with all mail titles
+    1: Mail count
+    2: Number of pinned mails
+    3: List of mails that has been read
+MailUnclaimed:
+    0: List of mails that have yet to be claimed
+Misc:
+    # Ruins
+    01: Number of holes left to check for the Dark Ruins Micro Froggit puzzle
+    # (Advanced)
+    Deaths: Unused
+# Play Statistics
+Deaths: Same as in Save02 but saved only by Flowey
+# Fun
+Fun Events:
+    0: Chair Man appeared
+    1: Chair Man appeared in Snowdin
+# Items
+Items: 00-07, set to item name when there is something there, and Nothing when there isn't
+# Dimensional Box
+DBox:
+    0: List of strings with item names of items in the Dimensional Box
+# (Advanced)
+Encounters:
+    0: Random encounters that may take place in the current room
+# Shops
+Steal:
+    0: List of items that have been stolen and cannot be re-stolen
+# Fast Travel
+FastTravel:
+    0: List of locations which can be fast-travelled to
+# (Advanced)
+NPCs:
+    0: Map of room + object names for NPCs which have more dialogue when talked to multiple times, and the current state of them being talked to
+Talks:
+    0: Similar to NPCs.0
+Misc2:
+    # (Advanced)
+    00: Number of interactions with Dalv's wardrobe
+    01: Number of interactions with Dalv's broom
+    02: Number of interactions with Dalv's mini fridge
+    03: Number of interactions with Dalv's corn painting
+    04: Number of interactions with the chest in Dalv's room
+    05: Number of interactions with the flower pot
+    06: Number of interactions with Dalv's doorway (unused)
+    07: Number of interactions with Dalv's room door
+    08: Number of times Dalv's house has been entered (0, 1 or 2)
+    09: Number of interactions with Dalv's books
+    # Flowey
+    10: Flowey's battle phase (0 if not battling, 1 or 2 for the phase)
+# Routes
+Route:
+    00: Current route (1 - Neutral, 2 - Pacifist, default, 3 - Genocide)
+GenoComplete:
+    1: Genocide Route completed in Dark Ruins
+    2: Genocide Route completed in Snowdin
+    3: Genocide Route completed in Dunes
+    4: Genocide Route completed in Steamworks
+    5: Unused
+Kills: 1-4 The amount of kills left to do in Genocide
+Kill Area: 1-4 Amount of kills that can be made in specific rooms of specific areas

@@ -1,0 +1,48 @@
+Save1:
+    # Battle stats
+    HP: HP
+    MAXHP: Max HP
+    PP: Protection points (invulnerability hits)
+    MAXPP: Maximum PP
+    SP: Speed points (faster turns)
+    MAXSP: Maximum SP
+    AT - Primary: Clover's AT stat
+    AT - Secondary: Clover's AT modifier by accessories
+    DFP: Like AT - Primary but for DF
+    DFS: Like AT - Secondary but for DF
+    LV: LOVE
+    EXP: EXP
+    Gold: Gold
+    # Equipment
+    Ammo: Current eqipped ammo
+    Armor: Current eqipped armor
+    Accessory: Current equipped accessory
+    Weapon: Current equipped weapon
+    # Other
+    playerSprite: Variant of the player's sprite
+        - kanako
+        - normal
+        - snowdin
+        - dunescave
+        - steamworkslava
+        - water
+    owms: Current BGM playing on the radio, or -4 if none (does not appear to actually work?)
+    # Flowey
+    ffight: Whether we are fighting Flowey right now and which one (1 or 2)
+# Items
+Items: Exactly the same as for Save
+# Flowey
+Special:
+    0: Flowey battle 1 phase
+    1: Flowey's attack list
+    2: Flowey's stolen attack list
+    3: Flowey's room list
+    4: Flowey's attack number
+petal:
+    count: Number of alive petals
+    0: Mechanical petal alive
+    1: Polygonal petal alive
+    2: Paper petal alive
+    3: Clay petal alive
+    4: Organic petal alive
+    5: Patchworked petal alive
