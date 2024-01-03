@@ -153,7 +153,7 @@ const SaveEditor: React.FC = () => {
                         index={index}
                         onChange={onChange}
                     />}
-                    defaultValue={itemsMapping['Nothing']}
+                    defaultValue={'Nothing'}
                 />
             </Section>
             <Section name="Fun value">
@@ -181,7 +181,7 @@ const SaveEditor: React.FC = () => {
                         index={index}
                         onChange={onChange}
                     />}
-                    defaultValue={fastTravelMapping['Snowdin - Forest']}
+                    defaultValue={'Snowdin - Forest'}
                 />}
             </Section>
             <Section name="Mail">
@@ -204,7 +204,7 @@ const SaveEditor: React.FC = () => {
                         index={index}
                         onChange={onChange}
                     />}
-                    defaultValue={mailMapping['Intro Letter']}
+                    defaultValue={'Intro Letter'}
                 />
                 <h3 className="text-xl">Read mail</h3>
                 <p>
@@ -222,7 +222,7 @@ const SaveEditor: React.FC = () => {
                         index={index}
                         onChange={onChange}
                     />}
-                    defaultValue={mailMapping['Intro Letter']}
+                    defaultValue={'Intro Letter'}
                 />
                 <h3 className="text-xl">Unclaimed mail</h3>
                 <p>
@@ -239,7 +239,7 @@ const SaveEditor: React.FC = () => {
                         index={index}
                         onChange={onChange}
                     />}
-                    defaultValue={mailMapping['Intro Letter']}
+                    defaultValue={'Intro Letter'}
                 />
             </Section>
             <Section name="Shops">
