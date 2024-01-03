@@ -19,7 +19,7 @@ const Modal: React.FC<Props> = ({title, isOpen, setIsOpen, children}) => {
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
             onClick={close}
         >
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+            <div className="relative w-auto my-6 mx-auto max-w-3xl max-h-[calc(100vh-50px)] overflow-y-auto box-border">
                 <div
                     className="relative flex flex-col w-full bg-black outline-none focus:outline-none border-white border-2"
                     onClick={onClickInside}
