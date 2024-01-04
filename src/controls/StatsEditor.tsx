@@ -32,7 +32,7 @@ const StatsEditor: React.FC<Props> = ({save}) => {
             type: 'change',
             save,
             section: 'Save1',
-            option: 'DFS',
+            option,
             value: armorData[property as keyof typeof armorData]
         });
     }, [dispatch, save]);
