@@ -12,6 +12,8 @@ import TextField from '../controls/TextField';
 import {SaveContext} from '../util/Context';
 import directionMapping from '../mappings/direction.json';
 import fastTravelMapping from '../mappings/fast-travel.json';
+import flagsMapping from '../mappings/flags.json';
+import floweyMapping from '../mappings/flowey.json';
 import followerMapping from '../mappings/follower.json';
 import funValueMapping from '../mappings/fun.json';
 import {allItemsMapping} from '../mappings/items';
@@ -24,6 +26,16 @@ import RoomViewer from '../controls/RoomViewer';
 import ListField from '../controls/ListField';
 import SteamworksIdEditor from '../controls/SteamworksIdEditor';
 import StatsEditor from '../controls/StatsEditor';
+
+const sworksCode2Mapping = Object.fromEntries(
+    Array(16)
+        .fill([])
+        .map((_, idx) => [idx, `${
+            String.fromCharCode('A'.charCodeAt(0) + Math.floor(idx / 4))
+        }${
+            idx % 4 + 1
+        }`])
+);
 
 const SaveEditor: React.FC = () => {
     const {data} = useContext(SaveContext);
@@ -204,22 +216,45 @@ const SaveEditor: React.FC = () => {
                 />
             </Section>
             <Section name="Routes">
-                {/* TODO */}
+                <SelectField save="save" section="Route" option="00" label="Current route" mapping={flagsMapping.route} />
             </Section>
             <Section name="Ruins">
-                {/* TODO */}
+                <SelectField save="save" section="Flags" option="15" label="Decibat fight" mapping={flagsMapping.decibat} />
+                <SelectField save="save" section="Flags" option="17" label="Dalv fight" mapping={flagsMapping.dalv} />
             </Section>
             <Section name="Snowdin">
-                {/* TODO */}
+                <SelectField save="save" section="SnowdinFlags" option="13" label="Martlet fight" mapping={flagsMapping.martlet} />
+                <SelectField save="save" section="SnowdinFlags" option="15" label="Clover's name" mapping={flagsMapping.name} />
             </Section>
             <Section name="Dunes">
-                {/* TODO */}
+                <SelectField save="save" section="DunesFlags" option="26" label="El Bailador fight" mapping={flagsMapping.bailador} />
+                <SelectField save="save" section="DunesFlags" option="24" label="Starlo fight" mapping={flagsMapping.encounter} />
+                <SelectField save="save" section="DunesFlags" option="40" label="Ceroba (Genocide) fight" mapping={flagsMapping.genocidebossencounter} />
             </Section>
             <Section name="Steamworks">
+                <SelectField save="save" section="SworksFlags" option="20" label="Guardener fight" mapping={flagsMapping.guardener} />
+                <SelectField save="save" section="SworksFlags" option="31" label="Axis fight" mapping={flagsMapping.axis} />
                 <SteamworksIdEditor save="save" section="SworksFlags" option="sworks_id" />
-            </Section>
+                <TextField save="save" section="SworksFlags" option="code" label="First passcode" />
+                <p>Second passcode</p>
+                <ListField
+                    save="save"
+                    section="SworksFlags"
+                    option="code2"
+                    defaultValue={0}
+                    item={(value, onChange, index) => <SelectDropdown
+                        onChange={onChange}
+                        index={index}
+                        value={value}
+                        mapping={sworksCode2Mapping}
+                    />}
+                />
+                <TextField save="save" section="SworksFlags" option="code3" label="Third passcode" />
+                </Section>
             <Section name="Flowey">
-                {/* TODO */}
+                <SelectField save="save" section="Misc2" option="10" label="Current battle phase" mapping={floweyMapping.ffight} />
+                <NumberField save="save" section="FloweyFlags" option="savecount" label="Save count" />
+                <SelectField save="save" section="FloweyFlags" option="savenumber" label="Maximum save number in the area" mapping={floweyMapping.savenumber} />
             </Section>
             <Section name="Play statistics">
                 <NumberField save="save" section="Playtime" option="Seconds" label="Playtime (seconds)" />

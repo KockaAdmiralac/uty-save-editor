@@ -1,0 +1,59 @@
+{
+    "route": {
+        "1": "Neutral",
+        "2": "Pacifist",
+        "3": "Genocide"
+    },
+    "decibat": {
+        "0": "Not encountered",
+        "1": "Spared by watching",
+        "2": "Spared by shooing/talking",
+        "3": "Killed"
+    },
+    "dalv": {
+        "0": "Not encountered",
+        "1": "Spared",
+        "2": "Killed",
+        "3": "Spared on Genocide after sparing Decibat",
+        "4": "Spared on Genocide after killing Decibat"
+    },
+    "martlet": {
+        "0": "Not encountered",
+        "1": "Finished by insulting or confusion",
+        "2": "Finished by attacking"
+    },
+    "name": {
+        "0": "Not chosen",
+        "1": "Gun-Hat",
+        "2": "Clover"
+    },
+    "bailador": {
+        "0": "Not encountered",
+        "1": "Spared",
+        "2": "Not encountered due to exhausted kill count",
+        "3": "Killed"
+    },
+    "encounter": {
+        "0": "Not encountered",
+        "1": "Spared",
+        "2": "Killed"
+    },
+    "genocidebossencounter": {
+        "0": "Not encountered",
+        "1": "Killed"
+    },
+    "guardener": {
+        "0": "Not encountered",
+        "1": "Spared but not watched the cutscene",
+        "2": "Spared and watched the cutscene",
+        "3": "Killed",
+        "4": "Aborted Pacifist by killing"
+    },
+    "axis": {
+        "0": "Not encountered",
+        "1": "Spared but not watched the cutscene",
+        "2": "Spared and watched the cutscene",
+        "3": "Killed before turn 8",
+        "4": "Killed on or after turn 8"
+    }
+}
