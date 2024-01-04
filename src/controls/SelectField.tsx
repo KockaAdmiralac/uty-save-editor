@@ -10,6 +10,7 @@ interface Props {
     label: string;
     mapping: Record<string, string | Record<string, string>>;
     isNumber?: boolean;
+    onChange?: (value: string | number) => void | Promise<void>;
 };
 
 interface DropdownProps {
@@ -46,10 +47,10 @@ export const SelectDropdown: React.FC<DropdownProps> = ({mapping, fieldName, val
     }</select>;
 };
 
-const SelectField: React.FC<Props> = ({save, section, option, label, mapping, isNumber}) => {
+const SelectField: React.FC<Props> = ({save, section, option, label, mapping, isNumber, onChange}) => {
     const {data, dispatch} = useContext(SaveContext);
     const value = data[save].data.data[section]?.data[option];
-    const onChange = useCallback((value: string | number) => {
+    const onSelectionChange = useCallback((value: string | number) => {
         dispatch({
             type: 'change',
             save,
@@ -57,7 +58,10 @@ const SelectField: React.FC<Props> = ({save, section, option, label, mapping, is
             option,
             value
         });
-    }, [dispatch, option, save, section]);
+        if (onChange) {
+            onChange(value);
+        }
+    }, [dispatch, option, save, section, onChange]);
     const fieldName = `${save}-${section}-${option}`;
     return <p className="flex flex-col mb-2">
         <label htmlFor={fieldName}>{label}</label>
@@ -65,7 +69,7 @@ const SelectField: React.FC<Props> = ({save, section, option, label, mapping, is
             mapping={mapping}
             fieldName={fieldName}
             value={value}
-            onChange={onChange}
+            onChange={onSelectionChange}
             index={0}
             isNumber={isNumber}
         />
