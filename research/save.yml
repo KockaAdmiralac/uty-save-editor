@@ -79,7 +79,6 @@ SnowdinFlags: 0-22
         4: We told Martlet we trust her but don't want to leave yet
         5: We told Martlet we're going off
     15: Which name has Clover chosen
-        0: Not chosen
         1: Gun-Hat
         2: Clover
 # Dunes
@@ -90,8 +89,8 @@ DunesFlags: 0-55
         2: killed
     26: How the El Bailador fight ended
         0: not encountered
-        1: spared
-        2: not encountered due to exhausted kill count
+        1: spared but not watched the cutscene
+        2: spared and watched the cutscene / not encountered due to exhausted kill count
         3: killed
     40: How the Genocide Ceroba fight ended
         0: not encountered

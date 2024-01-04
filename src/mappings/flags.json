@@ -23,14 +23,13 @@
         "2": "Finished by attacking"
     },
     "name": {
-        "0": "Not chosen",
         "1": "Gun-Hat",
         "2": "Clover"
     },
     "bailador": {
         "0": "Not encountered",
-        "1": "Spared",
-        "2": "Not encountered due to exhausted kill count",
+        "1": "Spared but not watched the cutscene",
+        "2": "Spared and watched the cutscene / Not encountered due to exhausted kill count",
         "3": "Killed"
     },
     "encounter": {
