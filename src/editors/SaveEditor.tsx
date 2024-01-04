@@ -133,9 +133,6 @@ const SaveEditor: React.FC = () => {
                             key={idx}
                         />)
             }</Section>
-            <Section name="Routes">
-                {/* TODO */}
-            </Section>
             <Section name="Dimensional Box">
                 <ListField
                     save="save"
@@ -236,14 +233,23 @@ const SaveEditor: React.FC = () => {
                     defaultValue={'Intro Letter'}
                 />
             </Section>
-            <Section name="Shops">
+            <Section name="Routes">
                 {/* TODO */}
             </Section>
             <Section name="Ruins">
                 {/* TODO */}
             </Section>
+            <Section name="Snowdin">
+                {/* TODO */}
+            </Section>
+            <Section name="Dunes">
+                {/* TODO */}
+            </Section>
             <Section name="Steamworks">
                 <SteamworksIdEditor save="save" section="SworksFlags" option="sworks_id" />
+            </Section>
+            <Section name="Flowey">
+                {/* TODO */}
             </Section>
             <Section name="Play statistics">
                 <NumberField save="save" section="Playtime" option="Seconds" label="Playtime (seconds)" />
@@ -268,9 +274,6 @@ const SaveEditor: React.FC = () => {
                     label="Death count against Dalv"
                     help="This value is only saved by Flowey, so it may not be present on Pacifist or Genocide runs."
                 />
-            </Section>
-            <Section name="Flowey">
-                {/* TODO */}
             </Section>
         </> : <LoadScreen fileName="Save.sav" save="save" showTemplate={true} />}
         <Footer />

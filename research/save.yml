@@ -53,6 +53,7 @@ Playtime:
     Seconds: The amount of seconds of playtime
 # (Advanced)
 RuinsFlags: 0-3
+# Ruins
 Flags: 0-29
     15: How the Decibat fight ended
         0: not encountered
@@ -65,6 +66,7 @@ Flags: 0-29
         2: killed
         3: spared on Genocide after sparing Decibat
         4: spared on Genocide after killing Decibat
+# Snowdin
 SnowdinFlags: 0-22
     13: Martlet battle result
         1: Insulting or confusion)
@@ -80,6 +82,7 @@ SnowdinFlags: 0-22
         0: Not chosen
         1: Gun-Hat
         2: Clover
+# Dunes
 DunesFlags: 0-55
     24: How the Starlo fight ended
         0: not encountered
@@ -94,12 +97,14 @@ DunesFlags: 0-55
         0: not encountered
         1: killed
 DunesFlagsExt: 0-6
+# Steamworks
 SworksFlags: 0-61
     20: How the Guardener fight ended
         0: not encountered
         1: spared but not watched the cutscene
         2: spared and watched the cutscene
         3: killed
+        4: aborted Pacifist by killing
     26: Steamworks ID status
         0: no ID
         1: arrived at ID room
@@ -111,6 +116,7 @@ SworksFlags: 0-61
         3: killed before turn 8?
         4: killed on or after turn 8?
     sworks_id: Grid for drawing the Steamworks ID, colors can be 1-8
+    # (Advanced)
     RbCount: Number of robot parts
     # Steamworks
     code: First passcode in the Steamworks factory (stupid green face)
@@ -123,7 +129,6 @@ RbY: Index of the robot part's X coordinate
 RbD: Depth of the robot part
 RbS: Scale of the robot part
 RbA: Angle of the robot part
-# Shops
 ItemStock: How many items are left in the stock
     0: Hndw Coffee
     1: Hndw Pancake
@@ -225,7 +230,6 @@ DBox:
 # (Advanced)
 Encounters:
     0: Random encounters that may take place in the current room
-# Shops
 Steal:
     0: List of items that have been stolen and cannot be re-stolen
 # Fast Travel
