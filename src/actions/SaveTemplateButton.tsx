@@ -38,7 +38,6 @@ const SaveTemplateButton: React.FC<Props> = ({ save, text }) => {
             setModalIsOpen(false);
         } catch (error: any) {
             if (error instanceof DOMException) {
-                // TODO: Allow users to delete their templates.
                 setError('Exceeded quota for user templates!');
             } else {
                 setError(error.message);
