@@ -20,6 +20,8 @@ try my best.
 - Can edit most important fields of the main save file
 - Can edit most fields of other save files
 - Fancy location picker which lets you visually select your location!
+- Fun value picker! (You no longer need to remember what does each fun value
+  mean.)
 - Editing of GameMaker DS lists! (which are normally unreadable through a text
   editor)
     - For example, Dimensional Box items, Fast Travel locations...
