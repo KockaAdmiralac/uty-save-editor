@@ -74,7 +74,6 @@ const LoadButton: React.FC<Props> = ({ fileName, save, text }) => {
             setIsOpen={setModalIsOpen}
             title="Load save file"
         >
-            {/* TODO: Make this message better. */}
             <p>
                 This option allows you to load your own save file from the
                 game and edit it.
