@@ -92,10 +92,12 @@ const LoadTemplateButton: React.FC<Props> = ({ save, text }) => {
             setIsOpen={setModalIsOpen}
             title="Load a template save"
         >
-            {/* TODO: Make this message better. */}
             <p>
                 You can select one of the template save files from below to
-                start editing from.
+                start editing from. Some of them are built-in presets which
+                allow you to start from some important points in the game, and
+                you can also save your own templates by using the <em>Save
+                template</em> button within the editor.
             </p>
             <ErrorMessage message={error} />
             <form className="flex flex-col w-1/2 m-auto justify-center mt-4">
