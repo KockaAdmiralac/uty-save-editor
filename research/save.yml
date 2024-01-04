@@ -119,7 +119,7 @@ SworksFlags: 0-61
     # (Advanced)
     RbCount: Number of robot parts
     # Steamworks
-    code: First passcode in the Steamworks factory (stupid green face)
+    code: First passcode in the Steamworks factory (Mr. Screen)
     code2: Second passcode in the Steamworks factory (furnaces)
     code3: Third passcode in the Steamworks factory (final floor)
 # (Advanced)
@@ -212,9 +212,7 @@ Mail:
 MailUnclaimed:
     0: List of mails that have yet to be claimed
 Misc:
-    # Ruins
     01: Number of holes left to check for the Dark Ruins Micro Froggit puzzle
-    # (Advanced)
     Deaths: Unused
 # Play Statistics
 Deaths: Same as in Save02 but saved only by Flowey
