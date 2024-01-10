@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback, useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import DownloadButton from '../actions/DownloadButton';
 import LoadButton from '../actions/LoadButton';
 import LoadTemplateButton from '../actions/LoadTemplateButton';
@@ -6,7 +6,7 @@ import SaveTemplateButton from '../actions/SaveTemplateButton';
 import BackButton from '../components/BackButton';
 import Section from '../controls/Section';
 import NumberField from '../controls/NumberField';
-import SelectField, { SelectDropdown } from '../controls/SelectField';
+import SelectField, {SelectDropdown} from '../controls/SelectField';
 import BooleanField from '../controls/BooleanField';
 import TextField from '../controls/TextField';
 import {SaveContext} from '../util/Context';
@@ -18,14 +18,13 @@ import followerMapping from '../mappings/follower.json';
 import funValueMapping from '../mappings/fun.json';
 import {allItemsMapping} from '../mappings/items';
 import mailMapping from '../mappings/mail.json';
-import roomsMapping from '../mappings/rooms.json';
 import spriteMapping from '../mappings/sprite.json';
 import LoadScreen from './LoadScreen';
 import Footer from '../components/Footer';
-import RoomViewer from '../controls/RoomViewer';
 import ListField from '../controls/ListField';
 import SteamworksIdEditor from '../controls/SteamworksIdEditor';
 import StatsEditor from '../controls/StatsEditor';
+import LocationEditor from '../controls/LocationEditor';
 
 const sworksCode2Mapping = Object.fromEntries(
     Array(16)
@@ -39,28 +38,6 @@ const sworksCode2Mapping = Object.fromEntries(
 
 const SaveEditor: React.FC = () => {
     const {data} = useContext(SaveContext);
-    const roomsMappingOnlySaves = Object.fromEntries(
-        Object
-            .entries(roomsMapping)
-            .map(([areaName, rooms]) => [areaName, Object
-                .entries(rooms)
-                .filter(([_, name]) => name.endsWith(' [SAVE]'))
-                .map(([key, value]) => [key, value.replace(/ \[SAVE\]$/, '')])
-            ])
-            .filter(([_, rooms]) => rooms.length > 0)
-            .map(([areaName, rooms]) => [
-                String(areaName),
-                typeof rooms === 'string' ?
-                    {[rooms]: '???'} :
-                    Object.fromEntries(rooms)
-            ])
-    );
-    const [roomsMappingState, setRoomsMappingState] = useState<Record<string, Record<string, string>>>(roomsMappingOnlySaves);
-    const changeRoomsMapping = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-        setRoomsMappingState(event.currentTarget.checked ?
-            roomsMappingOnlySaves :
-            roomsMapping);
-    }, [roomsMappingOnlySaves, setRoomsMappingState]);
     const fastTravelEnabled = Boolean(data.save.data?.data['Save1']?.data['FTravel']);
     return <main className="flex flex-col items-center justify-center min-h-screen md:ml-20 md:mr-20 lg:ml-80 lg:mr-80 max-sm:ml-4 max-sm:mr-4">
         <h1 className="text-4xl mb-8">Save Editor</h1>
@@ -82,21 +59,7 @@ const SaveEditor: React.FC = () => {
             </div>
             <StatsEditor save="save" />
             <Section name="Overworld state">
-                <SelectField save="save" section="Save1" option="room" label="Current room" mapping={roomsMappingState} />
-                <RoomViewer save="save" section="Save1" roomOption="room" xOption="pX" yOption="pY" />
-                <TextField save="save" section="Save1" option="rmName" label="Room name on the title screen" />
-                <p className="grid grid-cols-2 gap-4 mb-2">
-                    <label htmlFor="only-saves">Show only SAVE locations</label>
-                    <input
-                        type="checkbox"
-                        name="only-saves"
-                        id="only-saves"
-                        defaultChecked={true}
-                        onChange={changeRoomsMapping}
-                    ></input>
-                </p>
-                <NumberField save="save" section="Save1" option="pX" label="X coordinate" />
-                <NumberField save="save" section="Save1" option="pY" label="Y coordinate" />
+                <LocationEditor save="save" />
                 <SelectField save="save" section="Save1" option="dir" label="Facing direction" mapping={directionMapping} />
                 <SelectField save="save" section="Save1" option="playerSprite" label="Player sprite" mapping={spriteMapping} />
                 <BooleanField save="save" section="Save1" option="playerCanRun" label="Running allowed" />
