@@ -41,7 +41,7 @@ There are several ways in which you could help:
    publicly yet. Research into the save file structure is currently available in
    this repository's `research` directory, and more thorough research into some
    flags is available
-   [here](https://undertaleyellow.fandom.com/wiki/User:FrostTheFrozenFox/Flags).
+   [here](https://undertaleyellow.wiki.gg/wiki/User:FrostTheFrozenFox/Flags).
    If we discover the entire structure of the save file, it makes implementing
    its editing much easier!
 3. **Curate save files:** there are some save file repositories (such as
