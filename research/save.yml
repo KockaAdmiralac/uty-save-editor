@@ -226,9 +226,10 @@ Items: 00-07, set to item name when there is something there, and Nothing when t
 # Dimensional Box
 DBox:
     0: List of strings with item names of items in the Dimensional Box
-# (Advanced)
+# Encounters
 Encounters:
     0: Random encounters that may take place in the current room
+# (Advanced)
 Steal:
     0: List of items that have been stolen and cannot be re-stolen
 # Fast Travel
@@ -263,4 +264,5 @@ GenoComplete:
     4: Genocide Route completed in Steamworks
     5: Unused
 Kills: 1-4 The amount of kills left to do in Genocide
+# (Advanced)
 Kill Area: 1-4 Amount of kills that can be made in specific rooms of specific areas

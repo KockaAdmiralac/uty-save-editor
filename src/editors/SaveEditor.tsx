@@ -12,6 +12,7 @@ import TextField from '../controls/TextField';
 import {SaveContext} from '../util/Context';
 import areasMapping from '../mappings/areas.json';
 import directionMapping from '../mappings/direction.json';
+import encountersMapping from '../mappings/encounters.json';
 import fastTravelMapping from '../mappings/fast-travel.json';
 import flagsMapping from '../mappings/flags.json';
 import floweyMapping from '../mappings/flowey.json';
@@ -246,6 +247,26 @@ const SaveEditor: React.FC = () => {
                 <SelectField save="save" section="Misc2" option="10" label="Current battle phase" mapping={floweyMapping.ffight} />
                 <NumberField save="save" section="FloweyFlags" option="savecount" label="Save count" />
                 <SelectField save="save" section="FloweyFlags" option="savenumber" label="Maximum save number in the area" mapping={floweyMapping.savenumber} />
+            </Section>
+            <Section name="Random encounters">
+                <p>
+                    These random encounters will appear for you in rooms with
+                    random encounters! You can also use this option to encounter
+                    enemies you wouldn't normally be able to encounter in a
+                    room.
+                </p>
+                <ListField
+                    save="save"
+                    section="Encounters"
+                    option="0"
+                    item={(value, onChange, index) => <SelectDropdown
+                        mapping={encountersMapping}
+                        value={value}
+                        index={index}
+                        onChange={onChange}
+                    />}
+                    defaultValue={'flier solo'}
+                />
             </Section>
             <Section name="Play statistics">
                 <NumberField save="save" section="Playtime" option="Seconds" label="Playtime (seconds)" />

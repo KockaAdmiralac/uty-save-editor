@@ -1,0 +1,76 @@
+{
+    "Dark Ruins": {
+        "flier solo": "Flier",
+        "flier trio": "Flier x3",
+        "penilla solo": "Penilla",
+        "flier penilla duo": "Flier & Penilla",
+        "sweet corn solo": "Sweet Corn",
+        "sweet corn duo": "Sweet Corn x2",
+        "sweet corn penilla duo": "Sweet Corn & Penilla",
+        "crispy scroll solo": "Crispy Scroll",
+        "rorrim solo": "Rorrim"
+    },
+    "Snowdin": {
+        "frostermit solo": "Frostermit",
+        "insomnitot solo": "Insomnitot",
+        "insomnitot duo": "Insomnitot x2",
+        "know cone solo": "Know Cone",
+        "frostermit know cone duo": "Frostermit + Know Cone",
+        "trihecta together": "Trihecta",
+        "trihecta separated": "Trihecta (separate, broken)"
+    },
+    "Dunes": {
+        "dunebud solo": "Dunebud",
+        "dunebud duo": "Dunebud x2",
+        "slither solo": "Sir Slither",
+        "cactony solo": "Cactony",
+        "cactony slither duo": "Cactony + Sir Slither",
+        "bowll solo": "Bowll"
+    },
+    "Steamworks": {
+        "jandroid": "Jandroid",
+        "jandroid duo": "Jandroid x2",
+        "goosic": "Goosic",
+        "jandroid goosic duo": "Jandroid + Goosic",
+        "tellyvis": "Telly-Vis"
+    },
+    "Bosses": {
+        "decibat": "Decibat",
+        "dalv": "Dalv",
+        "martlet pacifist": "Martlet",
+        "martlet genocide": "Martlet (Genocide)",
+        "el bailador": "El Bailador",
+        "feisty five": "Feisty Four",
+        "starlo": "Starlo",
+        "ceroba genocide": "Ceroba (Genocide)",
+        "macro froggit": "Macro Froggit",
+        "guardener": "Guardener",
+        "axis": "Axis",
+        "axis genocide": "Axis (Genocide)",
+        "flowey": "Flowey",
+        "ceroba": "Ceroba (Pacifist)",
+        "asgore": "Asgore",
+        "martlet genocide final": "Martlet (Genocide Final Form)"
+    },
+    "Single enemies": {
+        "nobody came": "But nobody came",
+        "froggit intro": "Froggit (Intro)",
+        "flowey intro": "Flowey (Intro)",
+        "micro froggit": "Micro Froggit",
+        "shufflers": "Rephil",
+        "flower girls": "Flower Girls",
+        "dummy training pacifist": "Dummy",
+        "sousborg": "Sousborg"
+    },
+    "Minifights": {
+        "boulders minifight": "Boulders (East Mines)",
+        "steam minifight": "Steam (Steamworks)",
+        "energy balls minifight": "Energy Balls (Steamworks)"
+    },
+    "Unused": {
+        "craniex": "Craniex (broken)",
+        "ms mettaton": "Ms. Mettaton (broken)",
+        "crispy scroll penilla duo": "Crispy Scroll + Penilla",
+        "know cone insomnitot duo": "Know Cone + Insomnitot"
+    }
+}
