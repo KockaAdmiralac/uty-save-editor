@@ -40,6 +40,8 @@ Save1:
         - obj_martlet_follower
         - obj_ceroba_follower
         - The game can die if you put Ceroba where she isn't meant to be
+        - You can put any object here to spawn it, not every will appear as
+          followers but it can be used to spawn obj_debugger or obj_dev_console
     # Dimensional Box
     Satchel: Whether the player has the Dimensional Satchel
     # Fast Travel

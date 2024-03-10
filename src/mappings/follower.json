@@ -1,5 +1,7 @@
 {
     "noone": "Nobody",
     "obj_martlet_follower": "Martlet",
-    "obj_ceroba_follower": "Ceroba"
+    "obj_ceroba_follower": "Ceroba",
+    "obj_debugger": "Debug Mode",
+    "obj_dev_console": "Developer Console"
 }

@@ -64,6 +64,12 @@ const SaveEditor: React.FC = () => {
                 <SelectField save="save" section="Save1" option="playerSprite" label="Player sprite" mapping={spriteMapping} />
                 <BooleanField save="save" section="Save1" option="playerCanRun" label="Running allowed" />
                 <SelectField save="save" section="Save1" option="Follower" label="Follower" mapping={followerMapping} />
+                <p>
+                    <em>Note:</em> You can activate the game's debug features by
+                    setting the follower above. See
+                    the <a href="https://tcrf.net/Undertale_Yellow/Debugging_Tools">
+                    TCRF article</a> for more information!
+                </p>
             </Section>
             <Section name="Items">{
                 Array(8)
