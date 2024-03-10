@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import AxisFixer from '../actions/AxisFixer';
 import DownloadButton from '../actions/DownloadButton';
 import LoadButton from '../actions/LoadButton';
 import LoadTemplateButton from '../actions/LoadTemplateButton';
@@ -58,6 +59,7 @@ const SaveEditor: React.FC = () => {
                 <LoadButton fileName="Save.sav" save="save" />
                 <LoadTemplateButton save="save" />
                 <BackButton />
+                <AxisFixer />
             </div>
             <StatsEditor save="save" />
             <Section name="Overworld state">

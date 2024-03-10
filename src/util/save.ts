@@ -45,3 +45,22 @@ export function identifySaveFile(file: IniFile): SaveFileName {
     }
     throw new Error('Cannot identify type of save file.');
 }
+
+export function checkAxisBroken(file: IniFile): boolean {
+    const route = Number(file.data['Route']?.data['00']);
+    const flag28 = Number(file.data['SworksFlags']?.data['28']);
+    const genoComplete = Number(file.data['GenoComplete']?.data['4']);
+    const encounters = file.data['Encounters']?.data['0'];
+    if (!Array.isArray(encounters)) {
+        return false;
+    }
+    // If we are on the Genocide Route...
+    return route === 3 &&
+           // ...and we have reached the control room...
+           flag28 > 0 &&
+           // ...but there are no encounters...
+           encounters.length === 0 &&
+           // ...and we haven't finished our Genocide Route yet...
+           genoComplete === 0;
+           // ...then we must have aborted the Genocide Route before Axis!
+}
