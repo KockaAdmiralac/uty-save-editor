@@ -28,6 +28,8 @@ try my best.
 - Templates for save files! You can get save files for the most important
   moments (such as the Pacifist final battle) in the game right through the
   editor, and then modify them to your desire.
+- Helps you fix your Genocide Route save file that you accidentally aborted
+  before Axis by not exhausting the kill counter before it was to late.
 - Helpful explanations of some options
 - Tries to make you not shoot your foot while editing as much as possible
 - Steamworks ID editing! (I bet you didn't need it)
