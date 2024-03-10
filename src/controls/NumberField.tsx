@@ -6,7 +6,7 @@ interface Props {
     save: SaveFileName;
     section: string;
     option: string;
-    label: string;
+    label?: string;
     help?: string;
 };
 
@@ -23,15 +23,15 @@ const NumberField: React.FC<Props> = ({save, section, option, label, help}) => {
             value: Number(event.currentTarget.value)
         });
     }, [dispatch, option, save, section]);
-    return <p className="grid grid-cols-2 gap-4 mb-2">
-        <label htmlFor={fieldName} title={help}>{
+    return <p className={label ? "grid grid-cols-2 gap-4 mb-2" : "grid mb-0"}>
+        {label && <label htmlFor={fieldName} title={help}>{
             help ?
                 <abbr title={help}>
                     {label}
                     <sup className="text-yellow-200">(?)</sup>
                 </abbr> :
                 label
-        }</label>
+        }</label>}
         <input
             className="text-black p-1"
             type="number"

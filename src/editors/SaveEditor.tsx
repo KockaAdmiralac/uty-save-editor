@@ -10,6 +10,7 @@ import SelectField, {SelectDropdown} from '../controls/SelectField';
 import BooleanField from '../controls/BooleanField';
 import TextField from '../controls/TextField';
 import {SaveContext} from '../util/Context';
+import areasMapping from '../mappings/areas.json';
 import directionMapping from '../mappings/direction.json';
 import fastTravelMapping from '../mappings/fast-travel.json';
 import flagsMapping from '../mappings/flags.json';
@@ -186,6 +187,27 @@ const SaveEditor: React.FC = () => {
             </Section>
             <Section name="Routes">
                 <SelectField save="save" section="Route" option="00" label="Current route" mapping={flagsMapping.route} />
+                <table>
+                    <caption>Genocide progress</caption>
+                    <tr>
+                        <th>Area</th>
+                        <th>Kills left</th>
+                        <th>Genocide complete</th>
+                    </tr>
+                    {Object.entries(areasMapping).map(([num, name]) => <tr>
+                        <td>{name}</td>
+                        <td><NumberField
+                            save="save"
+                            section="Kills"
+                            option={num}
+                        /></td>
+                        <td><BooleanField
+                            save="save"
+                            section="GenoComplete"
+                            option={num}
+                        /></td>
+                    </tr>)}
+                </table>
             </Section>
             <Section name="Ruins">
                 <SelectField save="save" section="Flags" option="15" label="Decibat fight" mapping={flagsMapping.decibat} />

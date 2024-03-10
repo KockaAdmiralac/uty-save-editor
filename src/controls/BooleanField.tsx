@@ -6,7 +6,7 @@ interface Props {
     save: SaveFileName;
     section: string;
     option: string;
-    label: string;
+    label?: string;
 };
 
 const BooleanField: React.FC<Props> = ({save, section, option, label}) => {
@@ -22,8 +22,8 @@ const BooleanField: React.FC<Props> = ({save, section, option, label}) => {
             value: Number(event.currentTarget.checked)
         });
     }, [dispatch, option, save, section]);
-    return <p className="grid grid-cols-2 gap-4 mb-2">
-        <label htmlFor={fieldName}>{label}</label>
+    return <p className={label && "grid grid-cols-2 gap-4 mb-2"}>
+        {label && <label htmlFor={fieldName}>{label}</label>}
         <input
             type="checkbox"
             name={fieldName}
