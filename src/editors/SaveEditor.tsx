@@ -192,24 +192,26 @@ const SaveEditor: React.FC = () => {
                 <SelectField save="save" section="Route" option="00" label="Current route" mapping={flagsMapping.route} />
                 <table>
                     <caption>Genocide progress</caption>
-                    <tr>
-                        <th>Area</th>
-                        <th>Kills left</th>
-                        <th>Genocide complete</th>
-                    </tr>
-                    {Object.entries(areasMapping).map(([num, name]) => <tr>
-                        <td>{name}</td>
-                        <td><NumberField
-                            save="save"
-                            section="Kills"
-                            option={num}
-                        /></td>
-                        <td><BooleanField
-                            save="save"
-                            section="GenoComplete"
-                            option={num}
-                        /></td>
-                    </tr>)}
+                    <tbody>
+                        <tr>
+                            <th>Area</th>
+                            <th>Kills left</th>
+                            <th>Genocide complete</th>
+                        </tr>
+                        {Object.entries(areasMapping).map(([num, name]) => <tr key={num}>
+                            <td>{name}</td>
+                            <td><NumberField
+                                save="save"
+                                section="Kills"
+                                option={num}
+                            /></td>
+                            <td><BooleanField
+                                save="save"
+                                section="GenoComplete"
+                                option={num}
+                            /></td>
+                        </tr>)}
+                    </tbody>
                 </table>
             </Section>
             <Section name="Ruins">

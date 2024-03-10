@@ -88,8 +88,8 @@ const LoadButton: React.FC<Props> = ({ fileName, save, text }) => {
                 under <code>%LOCALAPPDATA%/Undertale_Yellow</code> and the file
                 you need to load here is <code>{fileName}</code>.
             </p>}
-            {os.windows && <p>
-                You can find your save file in the following way:
+            {os.windows && <>
+                <p>You can find your save file in the following way:</p>
                 <ol>
                     <li>Click the 'Load' button below.</li>
                     <li>
@@ -104,10 +104,12 @@ const LoadButton: React.FC<Props> = ({ fileName, save, text }) => {
                     </li>
                     <li>Pick the one named <code>{fileName}</code>.</li>
                 </ol>
-            </p>}
-            {os.linux && <p>
-                If you're running the game by adding a GameMaker runner
-                executable, you can find your save file in the following way:
+            </>}
+            {os.linux && <>
+                <p>
+                    If you're running the game by adding a GameMaker runner
+                    executable, you can find your save file in the following way:
+                </p>
                 <ol>
                     <li>Click the 'Load' button below.</li>
                     <li>Navigate to your Home directory.</li>
@@ -118,13 +120,13 @@ const LoadButton: React.FC<Props> = ({ fileName, save, text }) => {
                         Select the <code>{fileName.toLowerCase()}</code> file.
                     </li>
                 </ol>
-            </p>}
-            {os.linux && <p>
-                If you're running the game with Wine, the directories you should
-                be entering are instead your Wine directory
-                (probably <code>~/.wine</code>), and
-                then <code>drive_c/users/(user)/Local Settings/Undertale_Yellow</code>.
-            </p>}
+                <p>
+                    If you're running the game with Wine, the directories you
+                    should be entering are instead your Wine directory
+                    (probably <code>~/.wine</code>), and
+                    then <code>drive_c/users/(user)/Local Settings/Undertale_Yellow</code>.
+                </p>
+            </>}
             <ErrorMessage message={error} />
             <div className="flex justify-center mt-4">
                 <Button label="Load" onClick={onLoad} />

@@ -62,9 +62,11 @@ const DownloadButton: React.FC<Props> = ({fileName, save}) => {
                 press the Download button below and move the file you downloaded
                 over there.
             </p>}
-            {os.windows && <p>
-                You can apply your changes to the save file in the following
-                way:
+            {os.windows && <>
+                <p>
+                    You can apply your changes to the save file in the following
+                    way:
+                </p>
                 <ol>
                     <li>
                         Click the 'Download' button below to download your
@@ -85,11 +87,13 @@ const DownloadButton: React.FC<Props> = ({fileName, save}) => {
                     </li>
                     <li>If asked to replace a file, you should replace it.</li>
                 </ol>
-            </p>}
-            {os.linux && <p>
-                If you're running the game by adding a GameMaker runner
-                executable, this is how you can apply your changes to the save
-                file:
+            </>}
+            {os.linux && <>
+                <p>
+                    If you're running the game by adding a GameMaker runner
+                    executable, this is how you can apply your changes to the
+                    save file:
+                </p>
                 <ol>
                     <li>
                         Click the 'Download' button below to download your
@@ -105,13 +109,13 @@ const DownloadButton: React.FC<Props> = ({fileName, save}) => {
                         save files in the process.
                     </li>
                 </ol>
-            </p>}
-            {os.linux && <p>
-                If you're running the game with Wine, the directories you should
-                be entering are instead your Wine directory
-                (probably <code>~/.wine</code>), and
-                then <code>drive_c/users/(user)/Local Settings/Undertale_Yellow</code>.
-            </p>}
+                <p>
+                    If you're running the game with Wine, the directories you
+                    should be entering are instead your Wine directory
+                    (probably <code>~/.wine</code>), and
+                    then <code>drive_c/users/(user)/Local Settings/Undertale_Yellow</code>.
+                </p>
+            </>}
             <ErrorMessage message={error} />
             <div className="flex justify-center mt-4">
                 <Button label="Download" onClick={onDownload} />
