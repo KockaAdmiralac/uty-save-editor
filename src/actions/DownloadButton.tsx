@@ -8,6 +8,7 @@ import ErrorMessage from '../components/ErrorMessage';
 import os from 'platform-detect/os.mjs';
 import windowsMoveSaveFile from '../instructions/windows-move-save-file.png';
 import windowsFindSaveFolder from '../instructions/windows-find-save-folder-2.png';
+import pkg from '../../package.json';
 
 const unknownOS = !os.linux && !os.windows;
 
@@ -56,7 +57,7 @@ const DownloadButton: React.FC<Props> = ({fileName, save}) => {
                 specific instructions on how the save files should be saved, so
                 you're on your own for that. If you know where should save files
                 be placed for Undertale Yellow on your operating system, let us
-                know through <a href="https://github.com/KockaAdmiralac/uty-save-editor/issues">GitHub Issues</a>!
+                know through <a href={pkg.bugs.url}>GitHub Issues</a>!
                 For reference, on Windows the save files are located
                 under <code>%LOCALAPPDATA%/Undertale_Yellow</code>, so you just
                 press the Download button below and move the file you downloaded

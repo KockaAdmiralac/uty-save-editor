@@ -8,6 +8,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import os from 'platform-detect/os.mjs';
 import windowsFindSaveFile from '../instructions/windows-find-save-file.png';
 import windowsFindSaveFolder from '../instructions/windows-find-save-folder.png';
+import pkg from '../../package.json';
 
 const unknownOS = !os.linux && !os.windows;
 
@@ -83,7 +84,7 @@ const LoadButton: React.FC<Props> = ({ fileName, save, text }) => {
                 specific instructions on how the save files should be loaded, so
                 you're on your own for that. If you know where should save files
                 be placed for Undertale Yellow on your operating system, let us
-                know through <a href="https://github.com/KockaAdmiralac/uty-save-editor/issues">GitHub Issues</a>!
+                know through <a href={pkg.bugs.url}>GitHub Issues</a>!
                 For reference, on Windows the save files are located
                 under <code>%LOCALAPPDATA%/Undertale_Yellow</code> and the file
                 you need to load here is <code>{fileName}</code>.
