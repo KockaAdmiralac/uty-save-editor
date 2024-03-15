@@ -20,7 +20,12 @@
     "martlet": {
         "0": "Not encountered",
         "1": "Finished by insulting or confusion",
-        "2": "Finished by attacking"
+        "2": "Finished by attacking",
+        "3": "Encountered on the Genocide Route"
+    },
+    "martletgeno": {
+        "0": "Not encountered/Spared",
+        "1": "Defeated violently/Betrayed"
     },
     "name": {
         "1": "Gun-Hat",

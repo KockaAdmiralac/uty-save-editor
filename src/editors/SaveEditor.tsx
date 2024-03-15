@@ -220,6 +220,7 @@ const SaveEditor: React.FC = () => {
             </Section>
             <Section name="Snowdin">
                 <SelectField save="save" section="SnowdinFlags" option="13" label="Martlet fight" mapping={flagsMapping.martlet} />
+                <SelectField save="save" section="SnowdinFlags" option="21" label="Martlet fight (Genocide)" mapping={flagsMapping.martletgeno} />
                 <SelectField save="save" section="SnowdinFlags" option="15" label="Clover's name" mapping={flagsMapping.name} />
             </Section>
             <Section name="Dunes">
