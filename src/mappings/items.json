@@ -45,11 +45,14 @@
         "G. Cactus": "Golden Cactus"
     },
     "Miscellaneous items": {
+        "Missing Poster": "Missing Poster",
         "Snowdin Map": "Snowdin Map",
         "Matches": "Matches",
         "Lukewarm Coffee": "Lukewarm Coffee",
         "Soggy Mitten": "Soggy Mitten",
         "Pickaxe": "Pickaxe",
-        "H. Acid": "Hydrochloric Acid"
+        "Necklace": "Necklace",
+        "H. Acid": "Hydrochloric Acid",
+        "Videotape": "Videotape"
     }
 }
