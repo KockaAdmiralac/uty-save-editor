@@ -247,7 +247,11 @@ const SaveEditor: React.FC = () => {
                     />}
                 />
                 <TextField save="save" section="SworksFlags" option="code3" label="Third passcode" />
-                </Section>
+            </Section>
+            <Section name="Hotland/New Home">
+                <SelectField save="save" section="HotlandFlags" option="2" label="Ceroba fight phase" mapping={flagsMapping.cerobaphase} />
+                <SelectField save="save" section="HotlandFlags" option="3" label="Ceroba fight result" mapping={flagsMapping.encounter} />
+            </Section>
             <Section name="Flowey">
                 <SelectField save="save" section="Misc2" option="10" label="Current battle phase" mapping={floweyMapping.ffight} />
                 <NumberField save="save" section="FloweyFlags" option="savecount" label="Save count" />

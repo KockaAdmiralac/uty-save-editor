@@ -59,5 +59,11 @@
         "2": "Spared and watched the cutscene",
         "3": "Killed before turn 8",
         "4": "Killed on or after turn 8"
+    },
+    "cerobaphase": {
+        "0": "Phase 1",
+        "1": "Phase 2",
+        "2": "Phase 3",
+        "3": "Phase 4"
     }
 }
