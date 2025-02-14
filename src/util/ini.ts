@@ -87,8 +87,11 @@ function parseGMString(str: string, ptr: number): [number, GMString] {
     return [ptr2 + strLength * 2, value];
 }
 
-function parseGMValue(str: string, ptr: number): [number, GMValue] {
+function parseGMValue(str: string, ptr: number): [number, GMValue | undefined] {
     const [ptr2, type] = parseInt32LE(str, ptr);
+    if (type === GMValueType.UNDEFINED) {
+        return [ptr2, undefined];
+    }
     if (type === GMValueType.REAL || type === GMValueType.BOOL) {
         const [ptr3, value] = parseGMReal(str, ptr2);
         return [ptr3, {type, value}];
@@ -116,7 +119,11 @@ function parseDSList(value: string): IniList {
     const list = [];
     while (--length >= 0) {
         [ptr, val] = parseGMValue(value, ptr);
-        list.push(val);
+        if (val) {
+            // Special case: global.mail_list_read may contain an UNDEFINED.
+            // See #22.
+            list.push(val);
+        }
     }
     return list;
 }
@@ -132,6 +139,10 @@ function parseDSMap(value: string): IniMap {
     while (--length >= 0) {
         [ptr, key] = parseGMValue(value, ptr);
         [ptr, val] = parseGMValue(value, ptr);
+        if (key === undefined || val === undefined) {
+            // This should never happen.
+            throw new Error('INI parse error: Map key or value is undefined.');
+        }
         // Hopefully, the keys won't be of type BOOL!
         map.data[key.value] = val;
         map.order.push(key.value);
@@ -154,6 +165,10 @@ function parseDSGrid(value: string): IniGrid {
     for (let x = 0; x < width; ++x) {
         for (let y = 0; y < height; ++y) {
             [ptr, val] = parseGMValue(value, ptr);
+            if (val === undefined) {
+                // This should not happen.
+                throw new Error('INI parse error: Grid value is undefined.');
+            }
             grid[y][x] = val;
         }
     }
@@ -200,6 +215,7 @@ export function parseIni(contents: string): IniFile {
             }
             const trimmedKey = key.trim();
             const trimmedValue = value.trim();
+            console.log('parsing key', trimmedKey, 'in section', currentSection, 'with value', trimmedValue);
             iniFile.data[currentSection].data[trimmedKey] = parseIniValue(trimmedValue);
             iniFile.data[currentSection].order.push(trimmedKey);
         } else if (line) {
