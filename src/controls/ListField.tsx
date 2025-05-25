@@ -40,7 +40,7 @@ const RemoveButton: React.FC<RemoveButtonProps> = ({save, section, option, count
                 type: 'change',
                 save,
                 section,
-                option,
+                option: countOption,
                 value: newListLength
             });
         }
