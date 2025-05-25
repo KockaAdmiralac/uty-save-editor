@@ -215,7 +215,6 @@ export function parseIni(contents: string): IniFile {
             }
             const trimmedKey = key.trim();
             const trimmedValue = value.trim();
-            console.log('parsing key', trimmedKey, 'in section', currentSection, 'with value', trimmedValue);
             iniFile.data[currentSection].data[trimmedKey] = parseIniValue(trimmedValue);
             iniFile.data[currentSection].order.push(trimmedKey);
         } else if (line) {
