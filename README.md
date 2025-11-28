@@ -5,7 +5,7 @@ A save editor for the [Undertale](https://undertale.com/) fangame
 
 ## Usage
 The save editor is currently available on
-[uty-save-editor.netlify.app](https://uty-save-editor.netlify.app/). It has not
+[save.yellow.undertale.wiki](https://save.yellow.undertale.wiki/). It has not
 been thoroughly tested and there may be bugs. Did you find an error which you
 don't understand? Do you want to propose a feature which is missing? Does
 something not seem very logical or obvious to you when using the editor? Then
