@@ -30,6 +30,9 @@ export const emptySaves: SaveFiles = {
 };
 
 export function identifySaveFile(file: IniFile): SaveFileName {
+    if (file.order.includes('Correo')) {
+        throw new Error('The Spanish port\'s save files do not work with this save editor yet. Check https://github.com/KockaAdmiralac/uty-save-editor/issues/25 for progress on this support!');
+    }
     if (file.order.includes('Controls')) {
         return 'controls';
     }
